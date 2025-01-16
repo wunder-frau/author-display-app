@@ -1,0 +1,134 @@
+.app-container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    border: 3px solid hotpink;
+    border-radius: 10px;
+    background-color: rgb(81, 81, 116);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  form {
+    margin-bottom: 20px;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  input {
+    padding: 8px;
+    font-size: 16px;
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    box-sizing: border-box;
+    background-color: rgb(81, 81, 116);
+    color: rgb(188, 225, 132);
+    border: none;
+    outline: none;
+    animation: shineImpulse 2s infinite;
+  }
+  
+  @keyframes shineImpulse {
+    0%, 100% {
+      border-bottom-color: palegoldenrod;
+      border-radius: 5px;
+      box-shadow: none;
+    }
+    50% {
+      box-shadow: 0 0 5px rgb(255, 223, 70);
+      border-radius: 5px;
+    }
+  }
+  
+  input:hover {
+    border-bottom-color: rgb(255, 255, 150);
+    box-shadow: 0 0 8px rgb(255, 255, 150);
+  }
+  
+  button {
+    padding: 8px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: rgb(81, 81, 116);
+    color: rgb(81, 81, 116);
+    border-radius: 5px;
+    white-space: nowrap;
+    animation: shineImpulseButton 2s infinite;
+  }
+  
+  @keyframes shineImpulseButton {
+    0%, 100% {
+      color: rgb(81, 81, 116);
+      box-shadow: none;
+    }
+    50% {
+      color: greenyellow;
+      box-shadow: 0 0 5px rgb(255, 223, 70);
+    }
+  }
+  
+  .author-list {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .author-list p {
+    margin: 0;
+    font-size: 18px;
+    color: greenyellow;
+    text-align: center;
+    border: 1px solid palegoldenrod;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(81, 81, 116);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  
+  .author-list p:hover {
+    background-color: grey;
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  
+  @media (max-width: 600px) {
+    .app-container {
+      padding: 15px;
+    }
+  
+    .author-list {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+  
+    input {
+      font-size: 14px;
+      max-width: 100%;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+  
+    .author-list p {
+      font-size: 16px;
+    }
+  }
+  
