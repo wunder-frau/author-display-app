@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# 📚 Book Listing App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple interactive app for managing a list of book titles, built with **React** and styled with **CSS animations**. ✨
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ➕ Add new book titles using an input form.
+- 🖼️ Display titles in a responsive grid layout.
+- 🎨 Smooth animations for input fields, buttons, and hover effects.
+- 📱 Fully responsive design for all screen sizes.
 
-## Expanding the ESLint configuration
+## 💻 Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- ⚛️ **React**: For building UI components.
+- 🎨 **CSS**: For styling, animations, and responsive layout.
 
-- Configure the top-level `parserOptions` property like this:
+## 🚀 Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd book-listing-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🛠️ Usage
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. ✏️ Enter a book title in the input field and click the `+` button to add it to the list.
+2. 📋 The titles will be displayed in a grid, with hover and animation effects.
+3. 📱 On smaller screens, the titles are displayed one per row for better readability.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+Let me know if you'd like any more tweaks! 😊✨
