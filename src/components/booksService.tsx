@@ -4,6 +4,7 @@ const baseUrl = 'http://localhost:3001/books';
 
 interface Book {
   title: string;
+  id: string;
 }
 
 const getAll = (): Promise<Book[]> => {
