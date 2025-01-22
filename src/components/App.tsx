@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Input from './Input';
 import TitleList from './TitleList';
 import booksService from './booksService';
+import BookPage from './BookPage'
 import './styles.css';
 
 interface Book {
@@ -47,11 +49,20 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="app-container">
-      {error && <p className="error">{error}</p>}
-      <Input addTitle={addTitle} />
-      <TitleList titles={books.map((book) => book.title)} />
-    </div>
+    <Router>
+      <div className="app-container">
+        {error && <p className="error">{error}</p>}
+        <Routes>
+          <Route path="/" element={
+            <>
+              <Input addTitle={addTitle} />
+              <TitleList books={books} />
+            </>
+          }/>
+          <Route path="/book/:id" element={<BookPage books={books} />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
