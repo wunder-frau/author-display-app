@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 interface Book {
   title: string;
+  author?: string;
   id: string;
 }
 
@@ -22,6 +23,7 @@ const BookPage: React.FC<BookPageProps> = ({ books }) => {
     <div>
       <h1>{book.title}</h1>
       <p>ID: {book.id}</p>
+      <p>Author: {book.author ? book.author : 'Unknown Author'}</p>
     </div>
   );
 };

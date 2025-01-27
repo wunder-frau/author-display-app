@@ -8,8 +8,10 @@ import './styles.css';
 
 interface Book {
   title: string;
+  author?: string;
   id: string;
 }
+
 
 const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
@@ -36,17 +38,18 @@ const App: React.FC = () => {
       });
   }, []);
   
-  const addTitle = (title: string) => {
-    const newBook: Book = { title, id: generateId() };
+  const addTitle = (title: string, author: string) => {
+    const newBook = { title, author, id: generateId() };
     booksService
       .create(newBook)
       .then((response) => {
         setSortedBooks([response, ...books]);
       })
       .catch(() => {
-        setError('Failed to add title');
+        setError('Failed to add book');
       });
   };
+  
 
   return (
     <Router>

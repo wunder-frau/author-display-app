@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface TitleListProps {
-  books: { title: string; id: string }[];
+  books: { title: string; author?: string; id: string }[];
 }
 
 const TitleList: React.FC<TitleListProps> = ({ books }) => {
@@ -10,7 +10,9 @@ const TitleList: React.FC<TitleListProps> = ({ books }) => {
     <div className="author-list">
       {books.map((book) => (
         <Link to={`/book/${book.id}`} key={book.id} style={{ textDecoration: 'none' }}>
-          <p className="clickable-title">{book.title}</p>
+          <p className="clickable-title">
+            {book.title}
+          </p>
         </Link>
       ))}
     </div>

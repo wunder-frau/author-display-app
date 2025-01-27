@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
 
 interface InputProps {
-  addTitle: (name: string) => void;
+  addTitle: (title: string, author: string) => void;
 }
 
 const Input: React.FC<InputProps> = ({ addTitle }) => {
-  const [authorName, setAuthorName] = useState('');
+  const [step, setStep] = useState<'title' | 'author'>('title'); // Step to track input stage
+  const [title, setTitle] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (authorName.trim()) {
-      addTitle(authorName);
-      setAuthorName('');
+
+    if (step === 'title') {
+      // Save the title and ask for the author next
+      setTitle(inputValue);
+      setInputValue(''); // Clear input field
+      setStep('author'); // Move to the next step
+    } else if (step === 'author') {
+      // Save the author and call addTitle
+      const author = inputValue;
+      addTitle(title, author);
+      setInputValue(''); // Clear input field
+      setTitle(''); // Clear title state
+      setStep('title'); // Reset to first step
     }
   };
 
@@ -19,10 +31,11 @@ const Input: React.FC<InputProps> = ({ addTitle }) => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={authorName}
-        onChange={(e) => setAuthorName(e.target.value)}
+        placeholder={step === 'title' ? 'Enter Book Title' : 'Enter Author Name'}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
       />
-      <button type="submit">+</button>
+      <button type="submit">{step === 'title' ? 'Next' : 'Add Book'}</button>
     </form>
   );
 };
