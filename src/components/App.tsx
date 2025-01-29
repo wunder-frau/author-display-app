@@ -52,7 +52,7 @@ const App: React.FC = () => {
     <Router>
       {/* <div className="app-container"> */}
       <div className='mx-auto grid max-w-screen-xl grid-rows-3 gap-5 rounded-lg border-4 border-pink-500 bg-gray-700 p-12 text-center font-sans'>
-        <h2 className='=test-2xl text-blue-500'>Hello, World!</h2>
+        <h2 className='=test-2xl animate-[var(--animate-shineImpulse)] text-blue-500'>Hello, World!</h2>
         {error && <p className='error'>{error}</p>}
         <Routes>
           <Route

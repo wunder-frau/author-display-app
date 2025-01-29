@@ -1,4 +1,20 @@
 @import 'tailwindcss';
+
+@theme {
+  --animate-shineImpulse: shineImpulse 2s infinite;
+
+  @keyframes shineImpulse {
+    0%,
+    100% {
+      box-shadow: none;
+      border-radius: 5px;
+    }
+    50% {
+      box-shadow: 0 0 5px rgb(255, 223, 70);
+      border-radius: 5px;
+    }
+  }
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

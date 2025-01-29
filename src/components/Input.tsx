@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import '../index.css'
 interface InputProps {
   addTitle: (title: string, author: string) => void
 }
@@ -30,6 +30,7 @@ const Input: React.FC<InputProps> = ({ addTitle }) => {
   return (
     <form onSubmit={handleSubmit}>
       <input
+        className="animate-[var(--animate-shineImpulse)]"
         type='text'
         placeholder={
           step === 'title' ? 'Enter Book Title' : 'Enter Author Name'
