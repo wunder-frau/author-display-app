@@ -1,22 +1,22 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react'
+import { useParams } from 'react-router-dom'
 
 interface Book {
-  title: string;
-  author?: string;
-  id: string;
+  title: string
+  author?: string
+  id: string
 }
 
 interface BookPageProps {
-  books: Book[];
+  books: Book[]
 }
 
 const BookPage: React.FC<BookPageProps> = ({ books }) => {
-  const { id } = useParams<{ id: string }>();
-  const book = books.find((b) => b.id === id);
+  const { id } = useParams<{ id: string }>()
+  const book = books.find(b => b.id === id)
 
   if (!book) {
-    return <p>Book not found</p>;
+    return <p>Book not found</p>
   }
 
   return (
@@ -25,7 +25,7 @@ const BookPage: React.FC<BookPageProps> = ({ books }) => {
       <p>ID: {book.id}</p>
       <p>Author: {book.author ? book.author : 'Unknown Author'}</p>
     </div>
-  );
-};
+  )
+}
 
-export default BookPage;
+export default BookPage

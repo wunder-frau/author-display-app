@@ -1,6 +1,7 @@
 # 📚 Book Listing App
 
-A simple interactive app for managing a list of book titles, built with **React** and styled with **CSS animations**. ✨
+A simple interactive app for managing a list of book titles, built with
+**React** and styled with **CSS animations**. ✨
 
 ## ✨ Features
 
@@ -35,9 +36,11 @@ A simple interactive app for managing a list of book titles, built with **React*
 
 ## 🛠️ Usage
 
-1. ✏️ Enter a book title in the input field and click the `+` button to add it to the list.
+1. ✏️ Enter a book title in the input field and click the `+` button to add it
+   to the list.
 2. 📋 The titles will be displayed in a grid, with hover and animation effects.
-3. 📱 On smaller screens, the titles are displayed one per row for better readability.
+3. 📱 On smaller screens, the titles are displayed one per row for better
+   readability.
 
 ---
 
