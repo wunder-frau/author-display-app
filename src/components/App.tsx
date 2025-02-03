@@ -51,9 +51,9 @@ const App: React.FC = () => {
   return (
     <div className='mx-auto min-h-[700px] w-full max-w-[1200px] min-w-[320px] bg-[#515174] text-center'>
       <Router>
-        <h2 className='animate-[var(--animate-shineImpulse)] text-center text-2xl text-blue-500'>
+        {/* <h2 className='animate-[var(--animate-shineImpulse)] text-center text-2xl text-blue-500'>
           Hello, World!
-        </h2>
+        </h2> */}
 
         {error && <p className='error'>{error}</p>}
         <Routes>
