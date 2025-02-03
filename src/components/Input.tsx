@@ -5,7 +5,7 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = ({ addTitle }) => {
-  const [step, setStep] = useState<'title' | 'author'>('title') // Step to track input stage
+  const [step, setStep] = useState<'title' | 'author'>('title')
   const [title, setTitle] = useState('')
   const [inputValue, setInputValue] = useState('')
 
@@ -28,17 +28,20 @@ const Input: React.FC<InputProps> = ({ addTitle }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form 
+      onSubmit={handleSubmit} 
+      className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto mt-10"
+    >
       <input
-        className="animate-[var(--animate-shineImpulse)]"
+        className='px-3 py-1 animate-[var(--animate-shineImpulse)] text-[greenyellow] text-center'
         type='text'
         placeholder={
-          step === 'title' ? 'Enter Book Title' : 'Enter Author Name'
+          step === 'title' ? 'Enter Title' : 'Enter Author Name'
         }
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
       />
-      <button type='submit'>{step === 'title' ? 'Next' : 'Add Book'}</button>
+      <button className="px-3 py-1 text-base cursor-pointer rounded-md whitespace-nowrap animate-[var(--animate-shineImpulse)] text-[greenyellow]" type='submit'>{step === 'title' ? 'Next' : '+'}</button>
     </form>
   )
 }

@@ -49,10 +49,12 @@ const App: React.FC = () => {
   }
 
   return (
+    <div className="w-full min-w-[320px] max-w-[1200px] mx-auto min-h-[700px] bg-[#515174] text-center">
     <Router>
-      {/* <div className="app-container"> */}
-      <div className='mx-auto grid max-w-screen-xl grid-rows-3 gap-5 rounded-lg border-4 border-pink-500 bg-gray-700 p-12 text-center font-sans'>
-        <h2 className='=test-2xl animate-[var(--animate-shineImpulse)] text-blue-500'>Hello, World!</h2>
+    <h2 className="text-2xl animate-[var(--animate-shineImpulse)] text-blue-500 text-center">
+  Hello, World!
+</h2>
+
         {error && <p className='error'>{error}</p>}
         <Routes>
           <Route
@@ -66,8 +68,8 @@ const App: React.FC = () => {
           />
           <Route path='/book/:id' element={<BookPage books={books} />} />
         </Routes>
-      </div>
     </Router>
+    </div>
   )
 }
 
