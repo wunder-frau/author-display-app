@@ -28,20 +28,23 @@ const Input: React.FC<InputProps> = ({ addTitle }) => {
   }
 
   return (
-    <form 
-      onSubmit={handleSubmit} 
-      className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md mx-auto mt-10"
+    <form
+      onSubmit={handleSubmit}
+      className='mx-auto mt-10 flex w-full max-w-md flex-col items-center justify-center gap-4 sm:flex-row'
     >
       <input
-        className='px-3 py-1 animate-[var(--animate-shineImpulse)] text-[greenyellow] text-center'
+        className='animate-[var(--animate-shineImpulse)] px-3 py-1 text-center text-[greenyellow]'
         type='text'
-        placeholder={
-          step === 'title' ? 'Enter Title' : 'Enter Author Name'
-        }
+        placeholder={step === 'title' ? 'Enter Title' : 'Enter Author Name'}
         value={inputValue}
         onChange={e => setInputValue(e.target.value)}
       />
-      <button className="px-3 py-1 text-base cursor-pointer rounded-md whitespace-nowrap animate-[var(--animate-shineImpulse)] text-[greenyellow]" type='submit'>{step === 'title' ? 'Next' : '+'}</button>
+      <button
+        className='animate-[var(--animate-shineImpulse)] cursor-pointer rounded-md px-3 py-1 text-base whitespace-nowrap text-[greenyellow]'
+        type='submit'
+      >
+        {step === 'title' ? 'Next' : '+'}
+      </button>
     </form>
   )
 }
