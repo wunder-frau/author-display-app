@@ -5,7 +5,6 @@ import BookPage from './BookPage'
 import Input from './Input'
 import TitleList from './TitleList'
 import booksService from './booksService'
-import './styles.css'
 
 interface Book {
   title: string
