@@ -1,8 +1,8 @@
+import globals from 'globals'
 import js from '@eslint/js'
-import prettier from 'eslint-config-prettier' // Import Prettier
+import prettier from 'eslint-config-prettier'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
-import globals from 'globals'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
@@ -11,7 +11,7 @@ export default tseslint.config(
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
-      prettier, // Now correctly defined
+      prettier,
     ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
