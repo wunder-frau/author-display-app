@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom'
-
 import { Book } from '../../types'
 
 interface Props {
   books: Book[]
 }
 
+//TODO: Add a book note
+//TODO: Edit a book notes
 const BookPage = ({ books }: Props) => {
   const { id } = useParams<{ id: string }>()
   const book = books.find((b) => b.id === id)
 
+  //FIXME: No routes matched location "/books/:id"
   if (!book) {
     return (
       <div className="flex h-screen items-center justify-center bg-[#fff5e1]">
@@ -19,19 +21,16 @@ const BookPage = ({ books }: Props) => {
   }
 
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center rounded-2xl bg-[#fff5e1] p-6">
-      <p className="absolute top-4 left-4 text-sm font-bold text-[#515174]">
-        {book.author || 'Unknown'}
-      </p>
-
-      <p className="absolute top-8 left-4 text-sm text-[#515174]">
-        id: {book.id || 'Unknown'}
-      </p>
-
-      <h1 className="text-center text-7xl font-bold text-[#515174]">
-        {book.title}
-      </h1>
-    </section>
+    <div className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
+      <div className="mx-auto max-w-2xl lg:mx-0">
+        <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          {book.title}
+        </h1>
+        {book.author && (
+          <p className="mt-2 text-lg text-gray-600">by {book.author}</p>
+        )}
+      </div>
+    </div>
   )
 }
 
