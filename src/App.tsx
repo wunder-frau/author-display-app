@@ -22,7 +22,7 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    setIsAuthed(!!token)
+    setIsAuthed(Boolean(token))
 
     bookService.getAll()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -56,7 +56,10 @@ const App = () => {
             )
           }
         />
-        <Route path="/start" element={<StartPage />} />
+        <Route
+          path="/start"
+          element={!isAuthed ? <StartPage /> : <Navigate to="/me" replace />}
+        />
       </Routes>
       <Footer />
     </Router>

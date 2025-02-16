@@ -14,6 +14,7 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
   const [isRegistered, setIsRegistered] = useState(true)
   const [emailField, resetEmail] = useField('email', 'email')
   const [passwordField, resetPassword] = useField('password', 'password')
+  const [nameField, resetName] = useField('text', 'name')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
@@ -24,19 +25,19 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
     setError(null)
 
     try {
-      const response = /*isRegistered
+      const response = isRegistered
         ? await loginService.login({
             email: emailField.value,
             password: passwordField.value,
           })
-        :*/ await loginService.signUp({
-        email: emailField.value,
-        password: passwordField.value,
-        name: 'Default Name',
-      })
+        : await loginService.signUp({
+            email: emailField.value,
+            password: passwordField.value,
+            name: nameField.value,
+          })
 
       if (response?.accessToken) {
-        localStorage.setItem('authToken', response.accessToken)
+        localStorage.setItem('token', response.accessToken)
         console.log('Authenticated user:', response.user)
         setIsAuthed(true)
         navigate('/me')
@@ -64,6 +65,24 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleAuth} className="space-y-6">
+          {!isRegistered && (
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-900"
+              >
+                Name
+              </label>
+              <div className="mt-2">
+                <input
+                  {...nameField}
+                  required={!isRegistered}
+                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
+                />
+              </div>
+            </div>
+          )}
+
           <div>
             <label
               htmlFor="email"

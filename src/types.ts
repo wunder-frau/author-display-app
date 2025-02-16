@@ -3,8 +3,8 @@
 //: Author {{{
 export interface Author {
   id: string
-  firstName: string
-  lastName?: string
+  firstname: string
+  lastname?: string
   books?: string[] // TODO: Change to Book[]
 }
 export type NewAuthor = Omit<Author, 'id'>
@@ -25,14 +25,13 @@ export interface User {
   email: string
   password: string // <- password hash
   name: string
-  imageLink: string
   books?: string[] // TODO: Change to Book[]
 }
 export type NewUser = Pick<User, 'email' | 'password' | 'name'>
 export type AuthUser = Omit<NewUser, 'name'>
 export type PublicUser = Omit<User, 'id' | 'password'>
 
-export interface UserSignupResponse {
+export interface AuthResponse {
   accessToken: string
   user: {
     // TODO: Change to PublicUser
