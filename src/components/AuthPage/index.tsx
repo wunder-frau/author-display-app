@@ -1,11 +1,58 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import { useField } from '../../hooks'
+import loginService from '../../services/login'
 
-const AuthPage = () => {
+interface Props {
+  // isAuthed: boolean
+  setIsAuthed: (auth: boolean) => void
+}
+
+//FIXME: Add name field to sign up
+const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
   const [isRegistered, setIsRegistered] = useState(true)
   const [emailField, resetEmail] = useField('email', 'email')
   const [passwordField, resetPassword] = useField('password', 'password')
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
+
+  const handleAuth = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = /*isRegistered
+        ? await loginService.login({
+            email: emailField.value,
+            password: passwordField.value,
+          })
+        :*/ await loginService.signUp({
+        email: emailField.value,
+        password: passwordField.value,
+        name: 'Default Name',
+      })
+
+      if (response?.accessToken) {
+        localStorage.setItem('authToken', response.accessToken)
+        console.log('Authenticated user:', response.user)
+        setIsAuthed(true)
+        navigate('/me')
+      } else {
+        throw new Error('Invalid response from server')
+      }
+
+      resetEmail()
+      resetPassword()
+    } catch (err) {
+      setError('Authentication failed. Please try again.')
+      console.error('Auth error:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -16,7 +63,7 @@ const AuthPage = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6">
+        <form onSubmit={handleAuth} className="space-y-6">
           <div>
             <label
               htmlFor="email"
@@ -65,12 +112,15 @@ const AuthPage = () => {
             </div>
           </div>
 
+          {error && <p className="text-center text-sm text-red-500">{error}</p>}
+
           <div>
             <button
-              type="button"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-indigo-600"
+              type="submit"
+              disabled={loading}
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:opacity-50"
             >
-              {isRegistered ? 'Sign in' : 'Sign up'}
+              {loading ? 'Processing...' : isRegistered ? 'Sign in' : 'Sign up'}
             </button>
           </div>
         </form>
@@ -82,6 +132,7 @@ const AuthPage = () => {
               setIsRegistered(!isRegistered)
               resetEmail()
               resetPassword()
+              setError(null)
             }}
             className="font-semibold text-indigo-600 hover:text-indigo-500"
           >

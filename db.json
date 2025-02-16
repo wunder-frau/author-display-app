@@ -1,4 +1,12 @@
 {
+  "users": [
+    {
+      "email": "john.doe@example.com",
+      "password": "$2a$10$yFxv2aXFRG2zJmjkpvzxS.B5t7EMvAVwPJMQy/W/JuFsfdYNRIDLe",
+      "name": "Default Name",
+      "id": 1
+    }
+  ],
   "books": [
     {
       "title": "To Kill a Mockingbird",

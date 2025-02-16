@@ -1,21 +1,18 @@
 import axios from 'axios'
 import { useState } from 'react'
 
-interface Service<NewT> {
-  getAll: () => Promise<void>
-  create: (obj: NewT) => Promise<void>
-}
+import { Service } from '../types'
 
 export const useResource = <T, NewT>(baseUrl: string): [T[], Service<NewT>] => {
   const [resources, setResources] = useState<T[]>([])
 
   const getAll = async () => {
-    const response = await axios.get(baseUrl)
+    const response = await axios.get<T[]>(baseUrl)
     setResources(response.data)
   }
 
-  const create = async (obj: NewT) => {
-    const response = await axios.post(baseUrl, obj)
+  const create = async (newObj: NewT) => {
+    const response = await axios.post<T>(baseUrl, newObj)
     setResources([...resources, response.data])
   }
 
@@ -34,5 +31,5 @@ export const useField = (type: string, name: string) => {
     setValue('')
   }
 
-  return [{ type, name, value, onChange }, reset]
+  return [{ type, name, value, onChange }, reset] as const
 }

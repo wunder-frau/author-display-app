@@ -37,10 +37,25 @@ const App = () => {
         />
         <Route
           path="/auth"
-          element={!isAuthed ? <AuthPage /> : <Navigate to="/me" replace />}
+          element={
+            !isAuthed ? (
+              <AuthPage setIsAuthed={setIsAuthed} />
+            ) : (
+              <Navigate to="/me" replace />
+            )
+          }
         />
         <Route path="/book/:id" element={<BookPage books={books} />} />
-        <Route path="/me" element={<BookListPage books={books} />} />
+        <Route
+          path="/me"
+          element={
+            isAuthed ? (
+              <BookListPage books={books} />
+            ) : (
+              <Navigate to="/start" replace />
+            )
+          }
+        />
         <Route path="/start" element={<StartPage />} />
       </Routes>
       <Footer />
