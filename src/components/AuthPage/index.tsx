@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { useField } from '../../hooks'
+
 import loginService from '../../services/login'
 
 interface Props {
@@ -20,9 +20,9 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
   const navigate = useNavigate()
 
   const handleAuth = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setLoading(true)
-    setError(null)
+    void event.preventDefault()
+    void setLoading(true)
+    void setError(null)
 
     try {
       const response = isRegistered

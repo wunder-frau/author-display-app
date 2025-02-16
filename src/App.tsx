@@ -6,26 +6,39 @@ import {
   Routes,
 } from 'react-router-dom'
 
+import bookService from './services/books'
+
+import { Book } from './types'
+
 import AuthPage from './components/AuthPage'
 import BookListPage from './components/BookListPage'
 import BookPage from './components/BookPage'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import StartPage from './components/StartPage'
-import { apiBaseUrl } from './constants'
-import { useResource } from './hooks'
-import { Book, NewBook } from './types'
 
 const App = () => {
-  const [books, bookService] = useResource<Book, NewBook>(`${apiBaseUrl}/books`)
+  const [books, setBooks] = useState<Book[]>([])
   const [isAuthed, setIsAuthed] = useState<boolean>(false)
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    setIsAuthed(Boolean(token))
+    if (token && typeof token === 'string') {
+      setIsAuthed(true)
+      bookService.setToken(token)
+    } else {
+      setIsAuthed(false)
+    }
+  }, [])
 
-    bookService.getAll()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  //FIXME: No pagination
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const books = await bookService.getAll()
+      setBooks(books)
+    }
+    fetchBooks()
+  }, [])
 
   return (
     <Router>

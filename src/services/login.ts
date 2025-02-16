@@ -6,16 +6,22 @@
 import axios from 'axios'
 import { apiBaseUrl } from '../constants'
 
-import { AuthResponse, AuthUser, NewUser } from '../types'
+import { UserAuth, UserAuthResponse, UserNew } from '../types'
 
-const signUp = async (user: NewUser): Promise<AuthResponse> => {
-  const response = await axios.post<AuthResponse>(`${apiBaseUrl}/signup`, user)
-  return response.data
+const signUp = async (user: UserNew): Promise<UserAuthResponse> => {
+  const { data } = await axios.post<UserAuthResponse>(
+    `${apiBaseUrl}/signup`,
+    user,
+  )
+  return data
 }
 
-const login = async (user: AuthUser) => {
-  const response = await axios.post<AuthResponse>(`${apiBaseUrl}/login`, user)
-  return response.data
+const login = async (user: UserAuth) => {
+  const { data } = await axios.post<UserAuthResponse>(
+    `${apiBaseUrl}/login`,
+    user,
+  )
+  return data
 }
 
 export default { signUp, login }

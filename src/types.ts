@@ -1,50 +1,43 @@
-//TODO: Included types
+export type Id = Number
 
 //: Author {{{
 export interface Author {
-  id: string
-  firstname: string
-  lastname?: string
+  id: Id
+  lastname: string
+  firstname?: string
   books?: string[] // TODO: Change to Book[]
 }
-export type NewAuthor = Omit<Author, 'id'>
+export type AuthorNew = Omit<Author, 'id'>
 //: }}}
 
 //: Book {{{
 export interface Book {
-  id: string
+  id: Id
   title: string
-  author?: string // TODO: Change to Author
+  author?: string // TODO: Change to InfoAuthor
 }
-export type NewBook = Omit<Book, 'id'>
+export type BookNew = Omit<Book, 'id'>
 //: }}}
 
 //: User {{{
 export interface User {
-  id: string
+  id: Id
   email: string
   password: string // <- password hash
   name: string
   books?: string[] // TODO: Change to Book[]
 }
-export type NewUser = Pick<User, 'email' | 'password' | 'name'>
-export type AuthUser = Omit<NewUser, 'name'>
-export type PublicUser = Omit<User, 'id' | 'password'>
+export type UserNew = Pick<User, 'email' | 'password' | 'name'>
+export type UserAuth = Omit<UserNew, 'name'>
+export type UserPublic = Omit<User, 'id' | 'password'>
 
-export interface AuthResponse {
+export interface UserAuthResponse {
   accessToken: string
   user: {
-    // TODO: Change to PublicUser
+    // TODO: Change to UserPublic
     email: string
     name: string
-    id: Number
+    id: Id
   }
-}
-//: }}}
-
-//: Service {{{
-export interface Service<NewT> {
-  getAll: () => Promise<void>
-  create: (obj: NewT) => Promise<void>
 }
 //: }}}
