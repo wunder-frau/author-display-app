@@ -1,11 +1,26 @@
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const navigation = [{ name: 'Add Book', href: '#' }]
 
-const Header = () => {
+interface Props {
+  isAuthed: boolean
+  setIsAuthed: (isAuthed: boolean) => void
+}
+
+//TODO: AddBookPage
+const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
+  const navigate = useNavigate()
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const handleLogout = () => {
+    localStorage.removeItem('token')
+    setIsAuthed(false)
+    navigate('/start')
+  }
 
   return (
     <div className="bg-white">
@@ -41,11 +56,21 @@ const Header = () => {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            {isAuthed ? (
+              <button
+                onClick={handleLogout}
+                className="text-sm/6 font-semibold text-gray-900"
+              >
+                Log out <span aria-hidden="true">&rarr;</span>
+              </button>
+            ) : (
+              <a href="/auth" className="text-sm/6 font-semibold text-gray-900">
+                Log in <span aria-hidden="true">&rarr;</span>
+              </a>
+            )}
           </div>
         </nav>
+
         <Dialog
           open={mobileMenuOpen}
           onClose={setMobileMenuOpen}
@@ -80,12 +105,21 @@ const Header = () => {
                   ))}
                 </div>
                 <div className="py-6">
-                  <a
-                    href="/auth"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  >
-                    Log in
-                  </a>
+                  {isAuthed ? (
+                    <button
+                      onClick={handleLogout}
+                      className="-mx-3 block w-full rounded-lg px-3 py-2.5 text-left text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                    >
+                      Log out
+                    </button>
+                  ) : (
+                    <a
+                      href="/auth"
+                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                    >
+                      Log in
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

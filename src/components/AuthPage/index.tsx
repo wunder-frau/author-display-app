@@ -47,6 +47,7 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
 
       resetEmail()
       resetPassword()
+      resetName()
     } catch (err) {
       setError('Authentication failed. Please try again.')
       console.error('Auth error:', err)

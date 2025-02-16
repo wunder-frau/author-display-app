@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
+      <Header isAuthed={isAuthed} setIsAuthed={setIsAuthed} />
       <Routes>
         <Route
           path="/"
