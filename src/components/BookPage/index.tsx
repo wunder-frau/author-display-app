@@ -5,9 +5,7 @@ interface Props {
   books: Book[]
 }
 
-//TODO: Add a book note
-//TODO: Edit a book notes
-const BookPage = ({ books }: Props) => {
+const BookPage: React.FC<Props> = ({ books }: Props) => {
   const { id } = useParams<{ id: string }>()
   const book = books.find((b) => b.id === id)
 

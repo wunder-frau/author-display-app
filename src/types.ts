@@ -1,32 +1,42 @@
-//TODO: Included types
+export type Id = Number
 
 //: Author {{{
 export interface Author {
-  id: string
-  firstName: string
-  lastName?: string
-  books?: string[] // TODO: Change to Book[]
+  lastname: string
+  firstname: string
+  books?: Book[]
+  id: Id
 }
-export type NewAuthor = Omit<Author, 'id'>
+export type AuthorNew = Omit<Author, 'id'>
+export type AuthorInfo = Pick<Author, 'id' | 'lastname' | 'firstname'>
+//: }}}
+
+//: Note {{{
+//TODO: Add Note type
 //: }}}
 
 //: Book {{{
 export interface Book {
-  id: string
   title: string
-  author?: string // TODO: Change to Author
+  author?: AuthorInfo
+  id: Id
 }
-export type NewBook = Omit<Book, 'id'>
+export type BookNew = Omit<Book, 'id'>
 //: }}}
 
 //: User {{{
 export interface User {
-  id: string
   email: string
   password: string // <- password hash
   name: string
-  books?: string[] // TODO: Change to Book[]
+  id: Id
 }
-export type NewUser = Omit<User, 'id'>
-export type PublicUser = Omit<User, 'id' | 'password'>
+export type UserNew = Pick<User, 'email' | 'password' | 'name'>
+export type UserAuth = Omit<UserNew, 'name'>
+export type UserPublic = Omit<User, 'password'>
+
+export interface UserAuthResponse {
+  accessToken: string
+  user: UserPublic
+}
 //: }}}

@@ -1,28 +1,78 @@
-import { useEffect } from 'react'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from 'react-router-dom'
 
+import bookService from './services/books'
+
+import { Book } from './types'
+
+import AuthPage from './components/AuthPage'
 import BookListPage from './components/BookListPage'
 import BookPage from './components/BookPage'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import { apiBaseUrl } from './constants'
-import { useResource } from './hooks'
-import { Book, NewBook } from './types'
+import StartPage from './components/StartPage'
 
-//TODO: User authentication
 const App = () => {
-  const [books, bookService] = useResource<Book, NewBook>(`${apiBaseUrl}/books`)
+  const [books, setBooks] = useState<Book[]>([])
+  const [isAuthed, setIsAuthed] = useState<boolean>(false)
 
   useEffect(() => {
-    bookService.getAll()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    const token = localStorage.getItem('token')
+    if (token && typeof token === 'string') {
+      setIsAuthed(true)
+      bookService.setToken(token)
+    } else {
+      setIsAuthed(false)
+    }
+  }, [])
+
+  //FIXME: No pagination
+  useEffect(() => {
+    const fetchBooks = async () => {
+      const books = await bookService.getAll()
+      setBooks(books)
+    }
+    fetchBooks()
+  }, [])
 
   return (
     <Router>
-      <Header />
+      <Header isAuthed={isAuthed} setIsAuthed={setIsAuthed} />
       <Routes>
-        <Route path="/" element={<BookListPage books={books} />} />
+        <Route
+          path="/"
+          element={<Navigate to={isAuthed ? '/me' : '/start'} replace />}
+        />
+        <Route
+          path="/auth"
+          element={
+            !isAuthed ? (
+              <AuthPage setIsAuthed={setIsAuthed} />
+            ) : (
+              <Navigate to="/me" replace />
+            )
+          }
+        />
         <Route path="/book/:id" element={<BookPage books={books} />} />
+        <Route
+          path="/me"
+          element={
+            isAuthed ? (
+              <BookListPage books={books} />
+            ) : (
+              <Navigate to="/start" replace />
+            )
+          }
+        />
+        <Route
+          path="/start"
+          element={!isAuthed ? <StartPage /> : <Navigate to="/me" replace />}
+        />
       </Routes>
       <Footer />
     </Router>

@@ -2,7 +2,7 @@
  * @see https://prettier.io/docs/configuration
  * @type {import("prettier").Config}
  */
-export default config = {
+const config = {
   plugins: [
     'prettier-plugin-organize-imports',
     'prettier-plugin-tailwindcss', // must be last
@@ -14,3 +14,5 @@ export default config = {
   trailingComma: 'all',
   useTabs: false,
 }
+
+export default config
