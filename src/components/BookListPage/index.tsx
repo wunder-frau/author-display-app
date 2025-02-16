@@ -19,7 +19,7 @@ const BookListPage: React.FC<Props> = ({ books }: Props) => {
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {books.length > 0 ? (
-            books.map((book) => <Item key={book.id} book={book} />)
+            books.map((book) => <Item key={String(book.id)} book={book} />)
           ) : (
             <p className="text-gray-600">No books available.</p>
           )}

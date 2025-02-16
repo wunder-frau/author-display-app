@@ -4,269 +4,150 @@
       "email": "john.doe@example.com",
       "password": "$2a$10$qxGJLlOLhzc6DDlEjLZnmuHB3KIVyw9B0biT.27TZ0tW1glsQ2ttO",
       "name": "John Doe",
+      "books": [],
       "id": 1
     }
   ],
+  "authors": [
+    { "id": 1, "firstname": "Harper", "lastname": "Lee" },
+    { "id": 2, "firstname": "Jane", "lastname": "Austen" },
+    { "id": 3, "firstname": "George", "lastname": "Orwell" },
+    { "id": 4, "firstname": "F. Scott", "lastname": "Fitzgerald" },
+    { "id": 5, "firstname": "Herman", "lastname": "Melville" },
+    { "id": 6, "firstname": "Leo", "lastname": "Tolstoy" },
+    { "id": 7, "firstname": "J.D.", "lastname": "Salinger" },
+    { "id": 8, "firstname": "Charlotte", "lastname": "Brontë" },
+    { "id": 9, "firstname": "J.R.R.", "lastname": "Tolkien" },
+    { "id": 10, "firstname": "Aldous", "lastname": "Huxley" },
+    { "id": 11, "firstname": "J.K.", "lastname": "Rowling" },
+    { "id": 12, "firstname": "C.S.", "lastname": "Lewis" },
+    { "id": 13, "firstname": "Fyodor", "lastname": "Dostoevsky" },
+    { "id": 14, "firstname": "Emily", "lastname": "Brontë" },
+    { "id": 15, "firstname": "Charles", "lastname": "Dickens" },
+    { "id": 16, "firstname": "Louisa May", "lastname": "Alcott" },
+    { "id": 17, "firstname": "John", "lastname": "Steinbeck" },
+    { "id": 18, "firstname": "Nathaniel", "lastname": "Hawthorne" },
+    { "id": 19, "firstname": "Bram", "lastname": "Stoker" },
+    { "id": 20, "firstname": "Mary", "lastname": "Shelley" },
+    { "id": 21, "firstname": "Oscar", "lastname": "Wilde" },
+    { "id": 22, "firstname": "Joseph", "lastname": "Conrad" },
+    { "id": 23, "firstname": "Dante", "lastname": "Alighieri" },
+    { "id": 24, "firstname": "Miguel", "lastname": "de Cervantes" },
+    { "id": 25, "firstname": "Homer", "lastname": "" },
+    { "id": 26, "firstname": "Victor", "lastname": "Hugo" },
+    { "id": 27, "firstname": "Gustave", "lastname": "Flaubert" },
+    { "id": 28, "firstname": "Ray", "lastname": "Bradbury" },
+    { "id": 29, "firstname": "Kurt", "lastname": "Vonnegut" },
+    { "id": 30, "firstname": "Gabriel", "lastname": "García Márquez" },
+    { "id": 31, "firstname": "William", "lastname": "Faulkner" },
+    { "id": 32, "firstname": "Toni", "lastname": "Morrison" },
+    { "id": 33, "firstname": "Margaret", "lastname": "Mitchell" },
+    { "id": 34, "firstname": "Joseph", "lastname": "Heller" },
+    { "id": 35, "firstname": "Ernest", "lastname": "Hemingway" },
+    { "id": 36, "firstname": "Cormac", "lastname": "McCarthy" },
+    { "id": 37, "firstname": "Yann", "lastname": "Martel" },
+    { "id": 38, "firstname": "Paulo", "lastname": "Coelho" },
+    { "id": 39, "firstname": "Ralph", "lastname": "Ellison" },
+    { "id": 40, "firstname": "Khaled", "lastname": "Hosseini" },
+    { "id": 41, "firstname": "Suzanne", "lastname": "Collins" },
+    { "id": 42, "firstname": "Vladimir", "lastname": "Nabokov" },
+    { "id": 43, "firstname": "Donna", "lastname": "Tartt" }
+  ],
   "books": [
     {
+      "id": 1,
       "title": "To Kill a Mockingbird",
-      "author": "Harper Lee",
-      "id": 1
+      "author": { "id": 1, "firstname": "Harper", "lastname": "Lee" }
     },
     {
+      "id": 2,
       "title": "Pride and Prejudice",
-      "author": "Jane Austen",
-      "id": 2
+      "author": { "id": 2, "firstname": "Jane", "lastname": "Austen" }
     },
     {
+      "id": 3,
       "title": "1984",
-      "author": "George Orwell",
-      "id": 3
+      "author": { "id": 3, "firstname": "George", "lastname": "Orwell" }
     },
     {
+      "id": 4,
       "title": "The Great Gatsby",
-      "author": "F. Scott Fitzgerald",
-      "id": 4
+      "author": { "id": 4, "firstname": "F. Scott", "lastname": "Fitzgerald" }
     },
     {
+      "id": 5,
       "title": "Moby Dick",
-      "author": "Herman Melville",
-      "id": 5
+      "author": { "id": 5, "firstname": "Herman", "lastname": "Melville" }
     },
     {
+      "id": 6,
       "title": "War and Peace",
-      "author": "Leo Tolstoy",
-      "id": 6
+      "author": { "id": 6, "firstname": "Leo", "lastname": "Tolstoy" }
     },
     {
+      "id": 7,
       "title": "The Catcher in the Rye",
-      "author": "J.D. Salinger",
-      "id": 7
+      "author": { "id": 7, "firstname": "J.D.", "lastname": "Salinger" }
     },
     {
+      "id": 8,
       "title": "Jane Eyre",
-      "author": "Charlotte Brontë",
-      "id": "8"
+      "author": { "id": 8, "firstname": "Charlotte", "lastname": "Brontë" }
     },
     {
+      "id": 9,
       "title": "The Hobbit",
-      "author": "J.R.R. Tolkien",
-      "id": 9
+      "author": { "id": 9, "firstname": "J.R.R.", "lastname": "Tolkien" }
     },
     {
+      "id": 10,
       "title": "Brave New World",
-      "author": "Aldous Huxley",
-      "id": 10
+      "author": { "id": 10, "firstname": "Aldous", "lastname": "Huxley" }
     },
     {
-      "title": "The Lord of the Rings",
-      "author": "J.R.R. Tolkien",
-      "id": 11
-    },
-    {
+      "id": 11,
       "title": "Harry Potter and the Sorcerer's Stone",
-      "author": "J.K. Rowling",
-      "id": 12
+      "author": { "id": 11, "firstname": "J.K.", "lastname": "Rowling" }
     },
     {
+      "id": 12,
       "title": "The Chronicles of Narnia",
-      "author": "C.S. Lewis",
-      "id": 13
+      "author": { "id": 12, "firstname": "C.S.", "lastname": "Lewis" }
     },
     {
-      "title": "Anna Karenina",
-      "author": "Leo Tolstoy",
-      "id": 14
-    },
-    {
+      "id": 13,
       "title": "Crime and Punishment",
-      "author": "Fyodor Dostoevsky",
-      "id": 15
+      "author": { "id": 13, "firstname": "Fyodor", "lastname": "Dostoevsky" }
     },
     {
-      "title": "Wuthering Heights",
-      "author": "Emily Brontë",
-      "id": 16
-    },
-    {
-      "title": "Great Expectations",
-      "author": "Charles Dickens",
-      "id": 17
-    },
-    {
-      "title": "Little Women",
-      "author": "Louisa May Alcott",
-      "id": 18
-    },
-    {
-      "title": "Emma",
-      "author": "Jane Austen",
-      "id": 19
-    },
-    {
-      "title": "Sense and Sensibility",
-      "author": "Jane Austen",
-      "id": 20
-    },
-    {
-      "title": "The Grapes of Wrath",
-      "author": "John Steinbeck",
-      "id": 21
-    },
-    {
-      "title": "Of Mice and Men",
-      "author": "John Steinbeck",
-      "id": 22
-    },
-    {
-      "title": "A Tale of Two Cities",
-      "author": "Charles Dickens",
-      "id": 23
-    },
-    {
-      "title": "The Scarlet Letter",
-      "author": "Nathaniel Hawthorne",
-      "id": 24
-    },
-    {
-      "title": "Dracula",
-      "author": "Bram Stoker",
-      "id": 25
-    },
-    {
-      "title": "Frankenstein",
-      "author": "Mary Shelley",
-      "id": 26
-    },
-    {
-      "title": "The Picture of Dorian Gray",
-      "author": "Oscar Wilde",
-      "id": 27
-    },
-    {
-      "title": "Heart of Darkness",
-      "author": "Joseph Conrad",
-      "id": 28
-    },
-    {
-      "title": "The Divine Comedy",
-      "author": "Dante Alighieri",
-      "id": 29
-    },
-    {
-      "title": "Don Quixote",
-      "author": "Miguel de Cervantes",
-      "id": 30
-    },
-    {
-      "title": "The Iliad",
-      "author": "Homer",
-      "id": 31
-    },
-    {
-      "title": "The Odyssey",
-      "author": "Homer",
-      "id": 32
-    },
-    {
-      "title": "Les Misérables",
-      "author": "Victor Hugo",
-      "id": 33
-    },
-    {
-      "title": "The Brothers Karamazov",
-      "author": "Fyodor Dostoevsky",
-      "id": 34
-    },
-    {
-      "title": "Madame Bovary",
-      "author": "Gustave Flaubert",
-      "id": 35
-    },
-    {
-      "title": "Fahrenheit 451",
-      "author": "Ray Bradbury",
-      "id": 36
-    },
-    {
-      "title": "Slaughterhouse-Five",
-      "author": "Kurt Vonnegut",
-      "id": 37
-    },
-    {
-      "title": "One Hundred Years of Solitude",
-      "author": "Gabriel García Márquez",
-      "id": 38
-    },
-    {
+      "id": 31,
       "title": "The Sound and the Fury",
-      "author": "William Faulkner",
-      "id": 39
+      "author": { "id": 31, "firstname": "William", "lastname": "Faulkner" }
     },
     {
+      "id": 32,
       "title": "Beloved",
-      "author": "Toni Morrison",
-      "id": 40
+      "author": { "id": 32, "firstname": "Toni", "lastname": "Morrison" }
     },
     {
+      "id": 33,
       "title": "Gone with the Wind",
-      "author": "Margaret Mitchell",
-      "id": 41
+      "author": { "id": 33, "firstname": "Margaret", "lastname": "Mitchell" }
     },
     {
+      "id": 34,
       "title": "Catch-22",
-      "author": "Joseph Heller",
-      "id": 42
+      "author": { "id": 34, "firstname": "Joseph", "lastname": "Heller" }
     },
     {
-      "title": "The Sun Also Rises",
-      "author": "Ernest Hemingway",
-      "id": 43
+      "id": 42,
+      "title": "Lolita",
+      "author": { "id": 42, "firstname": "Vladimir", "lastname": "Nabokov" }
     },
     {
-      "title": "The Road",
-      "author": "Cormac McCarthy",
-      "id": 44
-    },
-    {
-      "title": "Life of Pi",
-      "author": "Yann Martel",
-      "id": 45
-    },
-    {
-      "title": "The Alchemist",
-      "author": "Paulo Coelho",
-      "id": 46
-    },
-    {
-      "title": "Invisible Man",
-      "author": "Ralph Ellison",
-      "id": 47
-    },
-    {
-      "title": "The Kite Runner",
-      "author": "Khaled Hosseini",
-      "id": 48
-    },
-    {
-      "title": "A Thousand Splendid Suns",
-      "author": "Khaled Hosseini",
-      "id": 49
-    },
-    {
-      "title": "The Hunger Games",
-      "author": "Suzanne Collins",
-      "id": 50
-    },
-    {
-      "title": "lolita",
-      "author": "Nabokov",
-      "id": 54
-    },
-    {
+      "id": 43,
       "title": "The Goldfinch",
-      "author": "Donna Trtt",
-      "id": 55
+      "author": { "id": 43, "firstname": "Donna", "lastname": "Tartt" }
     }
   ]
 }

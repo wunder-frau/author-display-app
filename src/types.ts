@@ -2,42 +2,41 @@ export type Id = Number
 
 //: Author {{{
 export interface Author {
-  id: Id
   lastname: string
-  firstname?: string
-  books?: string[] // TODO: Change to Book[]
+  firstname: string
+  books?: Book[]
+  id: Id
 }
 export type AuthorNew = Omit<Author, 'id'>
+export type AuthorInfo = Pick<Author, 'id' | 'lastname' | 'firstname'>
+//: }}}
+
+//: Note {{{
+//TODO: Add Note type
 //: }}}
 
 //: Book {{{
 export interface Book {
-  id: Id
   title: string
-  author?: string // TODO: Change to InfoAuthor
+  author?: AuthorInfo
+  id: Id
 }
 export type BookNew = Omit<Book, 'id'>
 //: }}}
 
 //: User {{{
 export interface User {
-  id: Id
   email: string
   password: string // <- password hash
   name: string
-  books?: string[] // TODO: Change to Book[]
+  id: Id
 }
 export type UserNew = Pick<User, 'email' | 'password' | 'name'>
 export type UserAuth = Omit<UserNew, 'name'>
-export type UserPublic = Omit<User, 'id' | 'password'>
+export type UserPublic = Omit<User, 'password'>
 
 export interface UserAuthResponse {
   accessToken: string
-  user: {
-    // TODO: Change to UserPublic
-    email: string
-    name: string
-    id: Id
-  }
+  user: UserPublic
 }
 //: }}}
