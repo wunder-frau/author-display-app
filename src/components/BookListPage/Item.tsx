@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom'
 
 import { Book } from '../../types'
 
-const Item = ({ book }: { book: Book }) => {
+interface Props {
+  book: Book
+}
+
+const Item: React.FC<Props> = ({ book }: Props) => {
   return (
     <article
       key={book.id}
