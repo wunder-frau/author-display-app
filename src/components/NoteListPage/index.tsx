@@ -1,37 +1,55 @@
-import { useState } from "react";
-import { AnimatePresence} from "framer-motion"; // ✅ Import animations
-import NoteItem from "./NoteItem";
+import { useEffect, useState } from 'react'
+import { Note } from '../../types'
+import NoteItem from './NoteItem'
 
 interface Props {
-  notes: { id: string; content: string }[];
+  notes: Note[]
+  onAdd: () => void
 }
 
-const NoteListPage: React.FC<Props> = ({ notes: initialNotes }: Props) => {
-  const [notes, setNotes] = useState(initialNotes);
+const NoteListPage: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
+  const [notes, setNotes] = useState(initialNotes)
 
-  const handleNoteUpdate = (updatedNote: { id: string; content: string }) => {
-    setNotes(notes.map(note => (note.id === updatedNote.id ? updatedNote : note)));
-  };
+  useEffect(() => {
+    setNotes(initialNotes)
+  }, [initialNotes])
 
+  const handleNoteUpdate = (updatedNote: Note) => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === updatedNote.id ? updatedNote : note,
+      ),
+    )
+  }
+
+  // Change the parameter type to string
   const handleNoteDelete = (deletedNoteId: string) => {
-    setNotes(notes.filter(note => note.id !== deletedNoteId));
-  };
+    setNotes((prevNotes) =>
+      prevNotes.filter((note) => note.id !== deletedNoteId),
+    )
+  }
 
   return (
-    <div className="mt-5 bg-white p-5 border border-gray-300 rounded-lg">
-      {notes.length > 0 ? (
-        <div className="flex flex-wrap gap-4">
-          <AnimatePresence> {/* ✅ Wrap items for animation on delete */}
-            {notes.map((note) => (
-              <NoteItem key={note.id} note={note} onUpdate={handleNoteUpdate} onDelete={handleNoteDelete} />
-            ))}
-          </AnimatePresence>
+    <div className="mt-5 rounded-lg border border-gray-300 bg-white p-5">
+      <div className="flex flex-wrap justify-center gap-4">
+        {/* Add Note Card */}
+        <div
+          onClick={onAdd}
+          className="flex w-58 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4"
+        >
+          <span className="text-3xl text-gray-400">+</span>
         </div>
-      ) : (
-        <p className="text-gray-600">No notes available.</p>
-      )}
+        {notes.map((note) => (
+          <NoteItem
+            key={note.id}
+            note={note}
+            onUpdate={handleNoteUpdate}
+            onDelete={handleNoteDelete}
+          />
+        ))}
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default NoteListPage;
+export default NoteListPage

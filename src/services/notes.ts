@@ -15,10 +15,22 @@ const getAllByBook = async (bookId: string) => {
 };
 
 const create = async (bookId: string, content: string) => {
-  const config = { headers: { Authorization: token } };
-  const { data } = await axios.post<{ id: string; content: string }>(`${notesUrl}/${bookId}`, { content }, config);
-  return data;
-};
+    if (!content) {
+      throw new Error("Note content is required!");
+    }
+  
+    const config = {
+      headers: { Authorization: token },
+    };
+  
+    const { data } = await axios.post<{ id: string; content: string }>(
+      `${notesUrl}/${bookId}`,
+      { content },
+      config
+    );
+  
+    return data;
+  };
 
 const update = async (noteId: string, content: string) => {
     if (!noteId) {

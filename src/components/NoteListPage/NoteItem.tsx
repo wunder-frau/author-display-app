@@ -1,75 +1,74 @@
-import { useState } from "react";
-import { motion } from "framer-motion"; // ✅ Import animation library
-import notesService from "../../services/notes";
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+import notesService from '../../services/notes'
+import ConfirmModal from '../ConfirmModal/ConfirmModal'
 
 interface Props {
-  note: { id: string; content: string };
-  onUpdate: (updatedNote: { id: string; content: string }) => void;
-  onDelete: (deletedNoteId: string) => void;
+  note: { id: string; content: string }
+  onUpdate: (updatedNote: { id: string; content: string }) => void
+  onDelete: (deletedNoteId: string) => void
 }
 
 const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(note.content);
-  const [loading, setLoading] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false)
+  const [editedContent, setEditedContent] = useState(note.content)
+  const [loading, setLoading] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // ✅ Handle Editing
+  // Handle Editing
   const handleEdit = async () => {
     if (!note.id) {
-      console.error("Note ID is missing!");
-      return;
+      console.error('Note ID is missing!')
+      return
     }
     try {
-      setLoading(true);
-      const updatedNote = await notesService.update(note.id, editedContent);
-      onUpdate(updatedNote);
-      setIsEditing(false);
+      setLoading(true)
+      const updatedNote = await notesService.update(note.id, editedContent)
+      onUpdate(updatedNote)
+      setIsEditing(false)
     } catch (error) {
-      console.error("Error updating note:", error);
+      console.error('Error updating note:', error)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
-  // ✅ Handle Deletion with Animation
-  const handleDelete = async () => {
+  // Handle Delete Confirmation
+  const handleDeleteConfirm = async () => {
     try {
-      setIsDeleting(true);
-      await notesService.remove(note.id);
-      onDelete(note.id); // Remove from UI
+      await notesService.remove(note.id)
+      onDelete(note.id)
+      setIsModalOpen(false) // Close modal after deletion
     } catch (error) {
-      console.error("Error deleting note:", error);
-    } finally {
-      setIsDeleting(false);
+      console.error('Error deleting note:', error)
     }
-  };
+  }
 
   return (
     <motion.div
-      className="p-4 border border-amber-700 rounded-md shadow-sm bg-white w-60"
-      initial={{ opacity: 0, scale: 0.9 }}  // ✅ Appear effect
-      animate={{ opacity: 1, scale: 1 }}    // ✅ Show effect
-      exit={{ opacity: 0, scale: 0.5 }}     // ✅ Disappear animation on delete
+      className="flex w-full flex-col items-center justify-center rounded-lg border-2 border-gray-300 bg-white p-4 shadow-sm transition-shadow hover:shadow-lg sm:w-[14.5rem] md:w-[15rem]"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.5 }}
       transition={{ duration: 0.3 }}
     >
       {isEditing ? (
-        <div>
+        <div className="w-full">
           <textarea
-            className="w-full p-2 border rounded"
+            className="w-full rounded border p-2"
             value={editedContent}
             onChange={(e) => setEditedContent(e.target.value)}
           />
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex justify-center gap-2">
             <button
-              className="px-3 py-1 text-sm bg-blue-500 text-white rounded"
+              className="rounded bg-sky-600 px-3 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
               onClick={handleEdit}
               disabled={loading}
             >
-              {loading ? "Saving..." : "Save"}
+              {loading ? 'Saving...' : 'Save'}
             </button>
             <button
-              className="px-3 py-1 text-sm bg-gray-400 text-white rounded"
+              className="rounded bg-sky-600 px-3 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
               onClick={() => setIsEditing(false)}
             >
               Cancel
@@ -77,27 +76,33 @@ const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
           </div>
         </div>
       ) : (
-        <div>
-          <p className="text-gray-800 text-sm">{note.content}</p>
-          <div className="mt-2 flex gap-2">
+        <div className="w-full">
+          <p className="text-center text-sm text-gray-800">{note.content}</p>
+          <div className="mt-2 flex justify-center gap-2">
             <button
-              className="px-2 py-1 text-sm bg-yellow-500 text-white rounded"
+              className="rounded bg-sky-600 px-2 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
               onClick={() => setIsEditing(true)}
             >
               Edit
             </button>
             <button
-              className="px-2 py-1 text-sm bg-red-500 text-white rounded"
-              onClick={handleDelete}
-              disabled={isDeleting}
+              className="rounded bg-sky-600 px-2 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
+              onClick={() => setIsModalOpen(true)}
             >
-              {isDeleting ? "Deleting..." : "Delete"}
+              Delete
             </button>
           </div>
         </div>
       )}
-    </motion.div>
-  );
-};
 
-export default NoteItem;
+      <ConfirmModal
+        message="Are you sure you want to delete this note?"
+        isOpen={isModalOpen}
+        onConfirm={handleDeleteConfirm}
+        onCancel={() => setIsModalOpen(false)}
+      />
+    </motion.div>
+  )
+}
+
+export default NoteItem
