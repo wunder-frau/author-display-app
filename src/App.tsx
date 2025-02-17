@@ -42,7 +42,12 @@ const App = () => {
 
   return (
     <Router>
-      <Header isAuthed={isAuthed} setIsAuthed={setIsAuthed} />
+      <Header
+        isAuthed={isAuthed}
+        setIsAuthed={setIsAuthed}
+        books={books}
+        setBooks={setBooks}
+      />
       <Routes>
         <Route
           path="/"
