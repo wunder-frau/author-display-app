@@ -18,7 +18,7 @@ const signUp = async (user: UserNew): Promise<UserAuthResponse> => {
 
 const login = async (user: UserAuth) => {
   const { data } = await axios.post<UserAuthResponse>(
-    `${apiBaseUrl}/login`,
+    `${apiBaseUrl}/auth/login`,
     user,
   )
   return data
