@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import notesService from "../../services/notes"
+import notesService from "../../services/notes";
 import NoteListPage from "./index";
 
 const NotesContainer: React.FC<{ bookId: string }> = ({ bookId }) => {
-  const [notes, setNotes] = useState<{ content: string }[]>([]);
+  const [notes, setNotes] = useState<{ id: string; content: string }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
