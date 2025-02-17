@@ -63,7 +63,10 @@ const App = () => {
             )
           }
         />
-        <Route path="/book/:id" element={<BookPage books={books} />} />
+        <Route
+          path="/book/:id"
+          element={<BookPage books={books} setBooks={setBooks} />}
+        />
         <Route
           path="/me"
           element={

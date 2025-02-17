@@ -1,13 +1,19 @@
-import { useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import booksService from '../../services/books'
 import { Book } from '../../types'
+import ConfirmModal from '../ConfirmModal/ConfirmModal'
 import NotesContainer from '../NoteListPage/NotesContainer'
 
 interface Props {
   books: Book[]
+  setBooks: (books: Book[]) => void
 }
 
-const BookPage: React.FC<Props> = ({ books }: Props) => {
+const BookPage: React.FC<Props> = ({ books, setBooks }: Props) => {
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const [confirmOpen, setConfirmOpen] = useState(false)
   const book = books.find((b) => b.id === Number(id))
 
   if (!book) {
@@ -16,6 +22,16 @@ const BookPage: React.FC<Props> = ({ books }: Props) => {
         <p className="text-xl font-semibold text-[#ff6b81]">Book not found</p>
       </div>
     )
+  }
+
+  const handleDelete = async () => {
+    try {
+      await booksService.remove(book.id)
+      setBooks(books.filter((book) => book.id !== Number(id)))
+      navigate('/me')
+    } catch (error) {
+      console.error('Error deleting book:', error)
+    }
   }
 
   return (
@@ -29,8 +45,23 @@ const BookPage: React.FC<Props> = ({ books }: Props) => {
             by {book.author.firstname} {book.author.lastname}
           </p>
         )}
+        {/* Delete Book Button */}
+        <button
+          onClick={() => setConfirmOpen(true)}
+          className="mt-4 rounded bg-fuchsia-200 px-4 py-2 text-white transition-colors hover:bg-red-600"
+        >
+          Delete Book
+        </button>
       </div>
       <NotesContainer bookId={id!} />
+
+      {/* Confirmation Modal for deletion */}
+      <ConfirmModal
+        message="Are you sure you want to delete this book?"
+        isOpen={confirmOpen}
+        onConfirm={handleDelete}
+        onCancel={() => setConfirmOpen(false)}
+      />
     </div>
   )
 }

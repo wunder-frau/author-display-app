@@ -33,11 +33,8 @@ const AddBookForm: React.FC<Props> = ({ onAdd }) => {
     setLoading(true)
     setError(null)
     try {
-      // Call backend to create the new book.
       const newBook = await booksService.create(formData)
-      // Call the parent callback to add the new book to the list.
       onAdd(newBook)
-      // Clear the form fields.
       setFormData({ title: '', firstname: '', lastname: '' })
     } catch (error: any) {
       setError(error.message || 'An error occurred')
