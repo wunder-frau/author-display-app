@@ -10,7 +10,7 @@ import { UserAuth, UserAuthResponse, UserNew } from '../types'
 
 const signUp = async (user: UserNew): Promise<UserAuthResponse> => {
   const { data } = await axios.post<UserAuthResponse>(
-    `${apiBaseUrl}/signup`,
+    `${apiBaseUrl}/auth/signup`,
     user,
   )
   return data

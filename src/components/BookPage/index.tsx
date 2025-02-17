@@ -7,9 +7,8 @@ interface Props {
 
 const BookPage: React.FC<Props> = ({ books }: Props) => {
   const { id } = useParams<{ id: string }>()
-  const book = books.find((b) => b.id === id)
+  const book = books.find((b) => b.id === Number(id))
 
-  //FIXME: No routes matched location "/books/:id"
   if (!book) {
     return (
       <div className="flex h-screen items-center justify-center bg-[#fff5e1]">
@@ -25,7 +24,7 @@ const BookPage: React.FC<Props> = ({ books }: Props) => {
           {book.title}
         </h1>
         {book.author && (
-          <p className="mt-2 text-lg text-gray-600">by {book.author}</p>
+          <p className="mt-2 text-lg text-gray-600">by {book.author.firstname} {book.author.lastname}</p>
         )}
       </div>
     </div>

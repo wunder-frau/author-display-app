@@ -35,7 +35,6 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
             password: passwordField.value,
             name: nameField.value,
           })
-
       if (response?.accessToken) {
         localStorage.setItem('token', response.accessToken)
         console.log('Authenticated user:', response.user)
