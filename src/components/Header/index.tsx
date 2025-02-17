@@ -1,18 +1,16 @@
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-const navigation = [{ name: 'Add Book', href: '#' }]
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 interface Props {
   isAuthed: boolean
   setIsAuthed: (isAuthed: boolean) => void
 }
 
-//TODO: AddBookPage
 const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -22,6 +20,14 @@ const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
     navigate('/start')
   }
 
+  // Determine navigation button based on current route:
+  // If the path starts with '/book' (e.g. /book/2), show "Back to Book List"
+  // If the path starts with '/me', show "Add Book"
+  // Default to "Add Book"
+  const navItem = location.pathname.startsWith('/book')
+    ? { name: 'Back to Book List', href: '/me' }
+    : { name: 'Add Book', href: '/add-book' }
+
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
@@ -30,9 +36,9 @@ const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
           className="flex items-center justify-between p-6 lg:px-8"
         >
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="text-4xl">📚</span>
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -45,15 +51,12 @@ const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm/6 font-semibold text-gray-900"
-              >
-                {item.name}
-              </a>
-            ))}
+            <Link
+              to={navItem.href}
+              className="text-sm/6 font-semibold text-gray-900"
+            >
+              {navItem.name}
+            </Link>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {isAuthed ? (
@@ -64,9 +67,12 @@ const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
                 Log out <span aria-hidden="true">&rarr;</span>
               </button>
             ) : (
-              <a href="/auth" className="text-sm/6 font-semibold text-gray-900">
+              <Link
+                to="/auth"
+                className="text-sm/6 font-semibold text-gray-900"
+              >
                 Log in <span aria-hidden="true">&rarr;</span>
-              </a>
+              </Link>
             )}
           </div>
         </nav>
@@ -79,9 +85,9 @@ const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="/" className="-m-1.5 p-1.5">
+              <Link to="/" className="-m-1.5 p-1.5">
                 <span className="text-4xl">📚</span>
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
@@ -94,15 +100,12 @@ const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+                  <Link
+                    to={navItem.href}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  >
+                    {navItem.name}
+                  </Link>
                 </div>
                 <div className="py-6">
                   {isAuthed ? (
@@ -113,12 +116,12 @@ const Header: React.FC<Props> = ({ isAuthed, setIsAuthed }: Props) => {
                       Log out
                     </button>
                   ) : (
-                    <a
-                      href="/auth"
+                    <Link
+                      to="/auth"
                       className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                     >
                       Log in
-                    </a>
+                    </Link>
                   )}
                 </div>
               </div>

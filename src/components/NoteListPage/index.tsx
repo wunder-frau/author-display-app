@@ -30,7 +30,7 @@ const NoteListPage: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
   }
 
   return (
-    <div className="mt-5 rounded-lg border border-gray-300 bg-white p-5">
+    <div className="mt-5 bg-white p-5">
       <div className="flex flex-wrap justify-center gap-4">
         {/* Add Note Card */}
         <div
