@@ -8,7 +8,7 @@ interface Props {
 
 const Item: React.FC<Props> = ({ book }: Props) => {
   return (
-    <article className="flex max-w-xl flex-col items-start justify-between">
+    <article className="flex max-w-xl flex-col items-start justify-between border-2 border-amber-700">
       <div className="group relative">
         <Link to={`/book/${book.id}`}>
           <h3 className="mt-3 text-lg font-semibold text-gray-900 no-underline group-hover:text-gray-600">

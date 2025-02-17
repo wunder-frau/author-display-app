@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { Book } from '../../types'
+import NotesContainer from "../NoteListPage/NotesContainer"
 
 interface Props {
   books: Book[]
@@ -26,6 +27,10 @@ const BookPage: React.FC<Props> = ({ books }: Props) => {
         {book.author && (
           <p className="mt-2 text-lg text-gray-600">by {book.author.firstname} {book.author.lastname}</p>
         )}
+      </div>
+      <div className="mt-10">
+        <h2 className="text-2xl font-semibold text-gray-900">Notes</h2>
+        <NotesContainer bookId={id!} />
       </div>
     </div>
   )
