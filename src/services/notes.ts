@@ -37,4 +37,21 @@ const update = async (noteId: string, content: string) => {
     return data;
   };
 
-export default { setToken, getAllByBook, create, update };
+  const remove = async (noteId: string) => {
+    if (!noteId) {
+      throw new Error("Note ID is missing!");
+    }
+  
+    const config = {
+      headers: { Authorization: token },
+    };
+  
+    const { data } = await axios.delete<{ message: string }>(
+      `${notesUrl}/${noteId}`,
+      config
+    );
+  
+    return data;
+  };
+  
+  export default { setToken, getAllByBook, create, update, remove };
