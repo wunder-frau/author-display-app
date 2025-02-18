@@ -14,7 +14,7 @@ export type AuthorInfo = Pick<Author, 'id' | 'lastname' | 'firstname'>
 //: Note {{{
 //TODO: Add Note type
 export interface Note {
-  content: string,
+  content: string
   id: string
 }
 //: }}}
