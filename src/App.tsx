@@ -34,8 +34,13 @@ const App = () => {
   //FIXME: No pagination
   useEffect(() => {
     const fetchBooks = async () => {
-      const books = await bookService.getAll()
-      setBooks(books)
+      try {
+        const books = await bookService.getAll()
+        setBooks(books)
+      } catch (error) {
+        console.error('Error fetching books:', error)
+        setBooks([])
+      }
     }
     fetchBooks()
   }, [])

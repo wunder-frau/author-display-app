@@ -1,6 +1,6 @@
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { Book } from '../../types'
@@ -9,9 +9,9 @@ import AddBookModal from '../ConfirmModal/AddBookModal'
 
 interface Props {
   isAuthed: boolean
-  setIsAuthed: (isAuthed: boolean) => void
+  setIsAuthed: (_: boolean) => void
   books: Book[]
-  setBooks: (books: Book[]) => void
+  setBooks: (_: Book[]) => void
 }
 
 const Header: React.FC<Props> = ({
@@ -162,8 +162,8 @@ const Header: React.FC<Props> = ({
         <AddBookModal
           isOpen={addBookModalOpen}
           onClose={() => setAddBookModalOpen(false)}
-          onAdd={(newBook) => {
-            console.log('New book added:', newBook)
+          onAdd={(newBook: Book) => {
+            // console.log('New book added:', newBook)
             setAddBookModalOpen(false)
             setBooks([...books, newBook])
           }}

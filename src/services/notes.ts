@@ -7,12 +7,12 @@ const setToken = (newToken: string | null) => {
   setAuthToken(newToken)
 }
 
-const getAllByBook = async (id: Id) => {
-  const { data } = await apiClient.get<Note[]>(`${notesUrl}/${id}`)
+const getAllByBook = async (bookId: Id) => {
+  const { data } = await apiClient.get<Note[]>(`${notesUrl}/${bookId}`)
   return data
 }
 
-const create = async (bookId: string, content: string) => {
+const create = async (bookId: Id, content: string) => {
   const trimmedContent = content.trim()
   if (!trimmedContent) {
     throw new Error('Note content is required!')

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import notesService from '../../services/notes'
 import { Id, Note } from '../../types'
 import NewNoteModal from '../ConfirmModal/NewNoteModal'
@@ -13,52 +13,35 @@ const NotesContainer: React.FC<Props> = ({ bookId }) => {
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const fetchNotes = useCallback(async () => {
-    try {
-      const token = localStorage.getItem('token')
-      notesService.setToken(token)
-      const fetchedNotes = await notesService.getAllByBook(bookId)
-      console.log('Fetched notes:', fetchedNotes)
-
-      // Sort notes so that the note with the highest numeric id appears first.
-      // This assumes that note.id is a numeric string.
-      const sortedNotes = fetchedNotes.sort(
-        (a, b) => Number(b.id) - Number(a.id),
-      )
-      setNotes(sortedNotes)
-    } catch (error) {
-      console.error('Error fetching notes:', error)
-      setNotes([])
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    const fetchNotes = async () => {
+      try {
+        const token = localStorage.getItem('token')
+        notesService.setToken(token)
+        const notes = await notesService.getAllByBook(bookId)
+        setNotes(notes)
+      } catch (error) {
+        console.error('Error fetching notes:', error)
+        setNotes([])
+      } finally {
+        setLoading(false)
+      }
     }
+    fetchNotes()
   }, [bookId])
 
-  // Load notes when component mounts or bookId changes
-  useEffect(() => {
-    fetchNotes()
-  }, [fetchNotes])
-
-  // Handle adding a new note
   const handleAddNote = useCallback(
     async (content: string) => {
       try {
         const newNote = await notesService.create(bookId, content)
-        console.log('New note added:', newNote)
 
-        if (!newNote.id) {
-          console.error('New note is missing an ID!', newNote)
-          return
-        }
-
-        // Prepend the new note so it appears at the top immediately
-        setNotes((prevNotes) => [newNote, ...prevNotes])
+        setNotes([newNote, ...notes])
         setIsModalOpen(false)
       } catch (error) {
         console.error('Error creating note:', error)
       }
     },
-    [bookId],
+    [bookId, notes],
   )
 
   if (loading) {

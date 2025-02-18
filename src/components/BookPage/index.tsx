@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import booksService from '../../services/books'
 import { Book } from '../../types'
 
-import ConfirmModal from '../ConfirmModal/ConfirmModal'
+import ConfirmModal from '../ConfirmModal'
 import NotesContainer from './NotesContainer'
 
 interface Props {
   books: Book[]
-  setBooks: (books: Book[]) => void
+  setBooks: (_: Book[]) => void
 }
 
 const BookPage: React.FC<Props> = ({ books, setBooks }: Props) => {
@@ -54,7 +54,7 @@ const BookPage: React.FC<Props> = ({ books, setBooks }: Props) => {
           Delete Book
         </button>
       </div>
-      <NotesContainer bookId={id!} />
+      <NotesContainer bookId={Number(id)} />
 
       <ConfirmModal
         message="Are you sure you want to delete this book?"

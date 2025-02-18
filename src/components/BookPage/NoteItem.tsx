@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
-import notesService from '../../services/notes'
+import React, { useState } from 'react'
 
+import notesService from '../../services/notes'
 import { Id, Note } from '../../types'
 
-import ConfirmModal from '../ConfirmModal/ConfirmModal'
+import ConfirmModal from '../ConfirmModal'
 
 interface Props {
   note: Note
-  onUpdate: (updatedObj: Note) => void
-  onDelete: (id: Id) => void
+  onUpdate: (_: Note) => void
+  onDelete: (_: Id) => void
 }
 
 const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {

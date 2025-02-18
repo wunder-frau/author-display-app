@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useField } from '../../hooks'
 
@@ -6,7 +6,7 @@ import loginService from '../../services/login'
 
 interface Props {
   // isAuthed: boolean
-  setIsAuthed: (auth: boolean) => void
+  setIsAuthed: (_auth: boolean) => void
 }
 
 //FIXME: Add name field to sign up
@@ -46,9 +46,9 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
       resetEmail()
       resetPassword()
       resetName()
-    } catch (err) {
+    } catch (error) {
       setError('Authentication failed. Please try again.')
-      console.error('Auth error:', err)
+      console.error('Auth error:', error)
     } finally {
       setLoading(false)
     }

@@ -27,8 +27,13 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       eqeqeq: ['error', 'always'],
-      'no-console': ['error', 'always'],
-      'react/prop-types': ['error', 'always'],
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      // '@typescript-eslint/no-unused-locals': 'error',
+      // '@typescript-eslint/no-unused-parameters': 'error',
     },
   },
 )

@@ -1,12 +1,15 @@
 import { Dialog } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
+import React from 'react'
+
 import { Book } from '../../types'
+
 import AddBookForm from '../AddBookForm'
 
 interface Props {
   isOpen: boolean
   onClose: () => void
-  onAdd: (newBook: Book) => void
+  onAdd: (_: Book) => void
 }
 
 const AddBookModal: React.FC<Props> = ({ isOpen, onClose, onAdd }) => {

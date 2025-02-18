@@ -1,4 +1,4 @@
-export type Id = Number
+export type Id = number
 
 //: Author {{{
 export interface Author {

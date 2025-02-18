@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import booksService from '../../services/books'
 
@@ -11,10 +11,10 @@ interface Data {
 }
 
 interface Props {
-  onAdd: (newBook: Book) => void
+  onAdd: (_: Book) => void
 }
 
-const AddBookForm: React.FC<Props> = ({ onAdd }) => {
+const AddBookForm: React.FC<Props> = ({ onAdd }: Props) => {
   const [formData, setFormData] = useState<Data>({
     title: '',
     firstname: '',
@@ -38,8 +38,9 @@ const AddBookForm: React.FC<Props> = ({ onAdd }) => {
       const newBook = await booksService.create(formData)
       onAdd(newBook)
       setFormData({ title: '', firstname: '', lastname: '' })
-    } catch (error: any) {
-      setError(error.message || 'An error occurred')
+    } catch (error) {
+      setError('Error adding book. Please try again.')
+      console.error('Error adding book:', error)
     } finally {
       setLoading(false)
     }

@@ -1,27 +1,24 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 import { Id, Note } from '../../types'
 import NoteItem from './NoteItem'
 
 interface Props {
   notes: Note[]
-  onAdd: () => void
+  setNotes: (_: Note[]) => void
+  onAdd: React.MouseEventHandler<HTMLDivElement>
 }
 
-const NoteList: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
-  const [notes, setNotes] = useState(initialNotes)
-
-  useEffect(() => {
-    setNotes(initialNotes)
-  }, [initialNotes])
-
+const NoteList: React.FC<Props> = ({ notes, setNotes, onAdd }) => {
   const handleNoteUpdate = (updatedObj: Note) => {
-    setNotes((prevNotes) =>
-      prevNotes.map((note) => (note.id === updatedObj.id ? updatedObj : note)),
+    setNotes(
+      notes.map((note: Note) =>
+        note.id === updatedObj.id ? updatedObj : note,
+      ),
     )
   }
 
   const handleNoteDelete = (id: Id) => {
-    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
+    setNotes(notes.filter((note: Note) => note.id !== id))
   }
 
   return (
@@ -33,7 +30,7 @@ const NoteList: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
         >
           <span className="text-3xl text-gray-400">+</span>
         </div>
-        {notes.map((note) => (
+        {notes.map((note: Note) => (
           <NoteItem
             key={String(note.id)}
             note={note}

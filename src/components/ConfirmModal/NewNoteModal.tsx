@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 interface Props {
   isOpen: boolean
   onClose: () => void
-  onSubmit: (content: string) => void
+  onSubmit: (_: string) => void
 }
 
 const NewNoteModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {

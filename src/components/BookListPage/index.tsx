@@ -1,4 +1,7 @@
+import React from 'react'
+
 import { Book } from '../../types'
+
 import Item from './Item'
 
 interface Props {
