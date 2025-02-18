@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
 
-interface ConfirmModalProps {
+interface Props {
   message: string
   isOpen: boolean
   onConfirm: () => void
   onCancel: () => void
 }
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({
+const ConfirmModal: React.FC<Props> = ({
   message,
   isOpen,
   onConfirm,

@@ -1,19 +1,18 @@
 import { useCallback, useEffect, useState } from 'react'
 import notesService from '../../services/notes'
-import { Note } from '../../types'
+import { Id, Note } from '../../types'
 import NewNoteModal from '../ConfirmModal/NewNoteModal'
-import NoteListPage from './index'
+import NoteList from './NoteList'
 
-interface NotesContainerProps {
-  bookId: string
+interface Props {
+  bookId: Id
 }
 
-const NotesContainer: React.FC<NotesContainerProps> = ({ bookId }) => {
+const NotesContainer: React.FC<Props> = ({ bookId }) => {
   const [notes, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Fetch notes for the given book
   const fetchNotes = useCallback(async () => {
     try {
       const token = localStorage.getItem('token')
@@ -68,7 +67,11 @@ const NotesContainer: React.FC<NotesContainerProps> = ({ bookId }) => {
 
   return (
     <div className="mx-4 my-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16">
-      <NoteListPage notes={notes} onAdd={() => setIsModalOpen(true)} />
+      <NoteList
+        notes={notes}
+        setNotes={setNotes}
+        onAdd={() => setIsModalOpen(true)}
+      />
 
       <NewNoteModal
         isOpen={isModalOpen}

@@ -1,3 +1,4 @@
+import { Id, Note, NoteNew } from '../types'
 import apiClient, { setAuthToken } from './apiClient'
 
 const notesUrl = '/notes'
@@ -6,10 +7,8 @@ const setToken = (newToken: string | null) => {
   setAuthToken(newToken)
 }
 
-const getAllByBook = async (bookId: string) => {
-  const { data } = await apiClient.get<{ id: string; content: string }[]>(
-    `${notesUrl}/${bookId}`,
-  )
+const getAllByBook = async (id: Id) => {
+  const { data } = await apiClient.get<Note[]>(`${notesUrl}/${id}`)
   return data
 }
 
@@ -17,35 +16,28 @@ const create = async (bookId: string, content: string) => {
   const trimmedContent = content.trim()
   if (!trimmedContent) {
     throw new Error('Note content is required!')
-  }
-  if (trimmedContent.length > 5000) {
+  } else if (trimmedContent.length > 5000) {
     throw new Error('Note content must be 5000 characters or less.')
   }
-  const { data } = await apiClient.post<{ id: string; content: string }>(
-    `${notesUrl}/${bookId}`,
-    { content: trimmedContent },
-  )
+  const { data } = await apiClient.post<Note>(`${notesUrl}/${bookId}`, {
+    content: trimmedContent,
+  })
   return data
 }
 
-const update = async (noteId: string, content: string) => {
-  if (!noteId) {
+const update = async (id: Id, updatedObj: NoteNew) => {
+  if (!id) {
     throw new Error('Note ID is missing!')
   }
-  const { data } = await apiClient.put<{ id: string; content: string }>(
-    `${notesUrl}/${noteId}`,
-    { content },
-  )
+  const { data } = await apiClient.put<Note>(`${notesUrl}/${id}`, updatedObj)
   return data
 }
 
-const remove = async (noteId: string) => {
-  if (!noteId) {
+const remove = async (id: Id) => {
+  if (!id) {
     throw new Error('Note ID is missing!')
   }
-  const { data } = await apiClient.delete<{ message: string }>(
-    `${notesUrl}/${noteId}`,
-  )
+  const { data } = await apiClient.delete<Note>(`${notesUrl}/${id}`)
   return data
 }
 

@@ -3,17 +3,13 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { Book } from '../../types'
 import AddBookForm from '../AddBookForm'
 
-interface AddBookModalProps {
+interface Props {
   isOpen: boolean
   onClose: () => void
   onAdd: (newBook: Book) => void
 }
 
-const AddBookModal: React.FC<AddBookModalProps> = ({
-  isOpen,
-  onClose,
-  onAdd,
-}) => {
+const AddBookModal: React.FC<Props> = ({ isOpen, onClose, onAdd }) => {
   return (
     <Dialog
       open={isOpen}

@@ -5,9 +5,9 @@ const apiClient = axios.create({
   baseURL: apiBaseUrl,
 })
 
-export const setAuthToken = (newToken: string | null) => {
-  if (newToken) {
-    apiClient.defaults.headers.common['Authorization'] = `Bearer ${newToken}`
+export const setAuthToken = (token: string | null) => {
+  if (token) {
+    apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`
   } else {
     delete apiClient.defaults.headers.common['Authorization']
   }

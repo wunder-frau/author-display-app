@@ -1,35 +1,33 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 
-interface NewNoteModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (content: string) => void;
+interface Props {
+  isOpen: boolean
+  onClose: () => void
+  onSubmit: (content: string) => void
 }
 
+const NewNoteModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
+  const [noteContent, setNoteContent] = useState('')
 
-
-const NewNoteModal: React.FC<NewNoteModalProps> = ({ isOpen, onClose, onSubmit }) => {
-  const [noteContent, setNoteContent] = useState("");
-
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center bg-amber-200 bg-opacity-50"
+      className="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-amber-200"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full text-center"
+        className="w-full max-w-sm rounded-lg bg-white p-6 text-center shadow-lg"
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0.8 }}
       >
         <h2 className="text-lg font-semibold">Add New Note</h2>
         <textarea
-          className="w-full p-2 mt-3 border rounded"
+          className="mt-3 w-full rounded border p-2"
           rows={3}
           value={noteContent}
           onChange={(e) => setNoteContent(e.target.value)}
@@ -37,18 +35,18 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({ isOpen, onClose, onSubmit }
         />
         <div className="mt-4 flex justify-center gap-4">
           <button
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
             onClick={() => {
               if (noteContent.trim()) {
-                onSubmit(noteContent);
-                setNoteContent("");
+                onSubmit(noteContent)
+                setNoteContent('')
               }
             }}
           >
             Add Note
           </button>
           <button
-            className="px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400"
+            className="rounded bg-gray-300 px-4 py-2 text-black hover:bg-gray-400"
             onClick={onClose}
           >
             Cancel
@@ -56,7 +54,7 @@ const NewNoteModal: React.FC<NewNoteModalProps> = ({ isOpen, onClose, onSubmit }
         </div>
       </motion.div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default NewNoteModal;
+export default NewNoteModal

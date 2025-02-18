@@ -1,8 +1,10 @@
 import { useState } from 'react'
+
 import booksService from '../../services/books'
+
 import { Book } from '../../types'
 
-interface AddBookFormData {
+interface Data {
   title: string
   firstname: string
   lastname: string
@@ -13,7 +15,7 @@ interface Props {
 }
 
 const AddBookForm: React.FC<Props> = ({ onAdd }) => {
-  const [formData, setFormData] = useState<AddBookFormData>({
+  const [formData, setFormData] = useState<Data>({
     title: '',
     firstname: '',
     lastname: '',

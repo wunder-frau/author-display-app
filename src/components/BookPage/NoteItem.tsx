@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import notesService from '../../services/notes'
+
+import { Id, Note } from '../../types'
+
 import ConfirmModal from '../ConfirmModal/ConfirmModal'
 
 interface Props {
-  note: { id: string; content: string }
-  onUpdate: (updatedNote: { id: string; content: string }) => void
-  onDelete: (deletedNoteId: string) => void
+  note: Note
+  onUpdate: (updatedObj: Note) => void
+  onDelete: (id: Id) => void
 }
 
 const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
@@ -15,7 +18,6 @@ const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
   const [loading, setLoading] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Handle Editing
   const handleEdit = async () => {
     if (!note.id) {
       console.error('Note ID is missing!')
@@ -23,7 +25,9 @@ const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
     }
     try {
       setLoading(true)
-      const updatedNote = await notesService.update(note.id, editedContent)
+      const updatedNote = await notesService.update(note.id, {
+        content: editedContent,
+      })
       onUpdate(updatedNote)
       setIsEditing(false)
     } catch (error) {
@@ -33,12 +37,11 @@ const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
     }
   }
 
-  // Handle Delete Confirmation
   const handleDeleteConfirm = async () => {
     try {
       await notesService.remove(note.id)
       onDelete(note.id)
-      setIsModalOpen(false) // Close modal after deletion
+      setIsModalOpen(false)
     } catch (error) {
       console.error('Error deleting note:', error)
     }

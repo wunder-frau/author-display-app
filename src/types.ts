@@ -12,11 +12,11 @@ export type AuthorInfo = Pick<Author, 'id' | 'lastname' | 'firstname'>
 //: }}}
 
 //: Note {{{
-//TODO: Add Note type
 export interface Note {
   content: string
-  id: string
+  id: Id
 }
+export type NoteNew = Omit<Note, 'id'>
 //: }}}
 
 //: Book {{{
@@ -35,7 +35,7 @@ export interface User {
   name: string
   id: Id
 }
-export type UserNew = Pick<User, 'email' | 'password' | 'name'>
+export type UserNew = Omit<User, 'id'>
 export type UserAuth = Omit<UserNew, 'name'>
 export type UserPublic = Omit<User, 'password'>
 

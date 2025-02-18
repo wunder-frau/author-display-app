@@ -1,7 +1,7 @@
 import { Book, BookNew, Id } from '../types'
 import apiClient, { setAuthToken } from './apiClient'
 
-const booksUrl = '/books' // using relative endpoint since apiClient already has baseURL
+const booksUrl = '/books'
 
 const setToken = (newToken: string | null) => {
   setAuthToken(newToken)
@@ -32,5 +32,4 @@ const remove = async (id: Id) => {
   return data
 }
 
-// Include setToken in the exported object
 export default { setToken, getAll, get, create, update, remove }

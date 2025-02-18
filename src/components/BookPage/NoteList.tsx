@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Note } from '../../types'
+import { Id, Note } from '../../types'
 import NoteItem from './NoteItem'
 
 interface Props {
@@ -7,32 +7,26 @@ interface Props {
   onAdd: () => void
 }
 
-const NoteListPage: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
+const NoteList: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
   const [notes, setNotes] = useState(initialNotes)
 
   useEffect(() => {
     setNotes(initialNotes)
   }, [initialNotes])
 
-  const handleNoteUpdate = (updatedNote: Note) => {
+  const handleNoteUpdate = (updatedObj: Note) => {
     setNotes((prevNotes) =>
-      prevNotes.map((note) =>
-        note.id === updatedNote.id ? updatedNote : note,
-      ),
+      prevNotes.map((note) => (note.id === updatedObj.id ? updatedObj : note)),
     )
   }
 
-  // Change the parameter type to string
-  const handleNoteDelete = (deletedNoteId: string) => {
-    setNotes((prevNotes) =>
-      prevNotes.filter((note) => note.id !== deletedNoteId),
-    )
+  const handleNoteDelete = (id: Id) => {
+    setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id))
   }
 
   return (
     <div className="mt-5 bg-white p-5">
       <div className="flex flex-wrap justify-center gap-4">
-        {/* Add Note Card */}
         <div
           onClick={onAdd}
           className="flex w-58 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4"
@@ -41,7 +35,7 @@ const NoteListPage: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
         </div>
         {notes.map((note) => (
           <NoteItem
-            key={note.id}
+            key={String(note.id)}
             note={note}
             onUpdate={handleNoteUpdate}
             onDelete={handleNoteDelete}
@@ -52,4 +46,4 @@ const NoteListPage: React.FC<Props> = ({ notes: initialNotes, onAdd }) => {
   )
 }
 
-export default NoteListPage
+export default NoteList
