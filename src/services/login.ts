@@ -3,24 +3,16 @@
  * @type {import("./src/hooks").useResource}
  */
 
-import axios from 'axios'
-import { apiBaseUrl } from '../constants'
-
 import { UserAuth, UserAuthResponse, UserNew } from '../types'
+import apiClient from './apiClient'
 
 const signUp = async (user: UserNew): Promise<UserAuthResponse> => {
-  const { data } = await axios.post<UserAuthResponse>(
-    `${apiBaseUrl}/auth/signup`,
-    user,
-  )
+  const { data } = await apiClient.post<UserAuthResponse>('/auth/signup', user)
   return data
 }
 
-const login = async (user: UserAuth) => {
-  const { data } = await axios.post<UserAuthResponse>(
-    `${apiBaseUrl}/auth/login`,
-    user,
-  )
+const login = async (user: UserAuth): Promise<UserAuthResponse> => {
+  const { data } = await apiClient.post<UserAuthResponse>('/auth/login', user)
   return data
 }
 

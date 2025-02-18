@@ -7,8 +7,7 @@
     "build": "tsc -b && vite build",
     "dev": "vite",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "server": "json-server-auth --port 3001 db.json"
+    "preview": "vite preview"
   },
   "engines": {
     "node": ">=22.14.0"

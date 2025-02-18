@@ -1,69 +1,52 @@
-import axios from "axios";
-import { apiBaseUrl } from "../constants";
+import apiClient, { setAuthToken } from './apiClient'
 
-const notesUrl = `${apiBaseUrl}/notes`;
-let token: string | null = null;
+const notesUrl = '/notes'
 
 const setToken = (newToken: string | null) => {
-  token = newToken ? `Bearer ${newToken}` : null;
-};
+  setAuthToken(newToken)
+}
 
 const getAllByBook = async (bookId: string) => {
-  const config = { headers: { Authorization: token } };
-  const { data } = await axios.get<{ id: string; content: string }[]>(`${notesUrl}/${bookId}`, config);
-  return data;
-};
+  const { data } = await apiClient.get<{ id: string; content: string }[]>(
+    `${notesUrl}/${bookId}`,
+  )
+  return data
+}
 
 const create = async (bookId: string, content: string) => {
-    if (!content) {
-      throw new Error("Note content is required!");
-    }
-  
-    const config = {
-      headers: { Authorization: token },
-    };
-  
-    const { data } = await axios.post<{ id: string; content: string }>(
-      `${notesUrl}/${bookId}`,
-      { content },
-      config
-    );
-  
-    return data;
-  };
+  const trimmedContent = content.trim()
+  if (!trimmedContent) {
+    throw new Error('Note content is required!')
+  }
+  if (trimmedContent.length > 5000) {
+    throw new Error('Note content must be 5000 characters or less.')
+  }
+  const { data } = await apiClient.post<{ id: string; content: string }>(
+    `${notesUrl}/${bookId}`,
+    { content: trimmedContent },
+  )
+  return data
+}
 
 const update = async (noteId: string, content: string) => {
-    if (!noteId) {
-      throw new Error("Note ID is missing!");
-    }
-  
-    const config = {
-      headers: { Authorization: token },
-    };
-  
-    const { data } = await axios.put<{ id: string; content: string }>(
-      `${notesUrl}/${noteId}`,
-      { content },
-      config
-    );
-    return data;
-  };
+  if (!noteId) {
+    throw new Error('Note ID is missing!')
+  }
+  const { data } = await apiClient.put<{ id: string; content: string }>(
+    `${notesUrl}/${noteId}`,
+    { content },
+  )
+  return data
+}
 
-  const remove = async (noteId: string) => {
-    if (!noteId) {
-      throw new Error("Note ID is missing!");
-    }
-  
-    const config = {
-      headers: { Authorization: token },
-    };
-  
-    const { data } = await axios.delete<{ message: string }>(
-      `${notesUrl}/${noteId}`,
-      config
-    );
-  
-    return data;
-  };
-  
-  export default { setToken, getAllByBook, create, update, remove };
+const remove = async (noteId: string) => {
+  if (!noteId) {
+    throw new Error('Note ID is missing!')
+  }
+  const { data } = await apiClient.delete<{ message: string }>(
+    `${notesUrl}/${noteId}`,
+  )
+  return data
+}
+
+export default { setToken, getAllByBook, create, update, remove }
