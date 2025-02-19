@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import notesService from '../../services/notes'
+import noteService from '../../services/notes'
 import { Id, Note } from '../../types'
 import NewNoteModal from '../Modal/NewNoteModal'
 import NoteList from './NoteList'
@@ -17,8 +17,8 @@ const NotesContainer = ({ bookId }: Props) => {
     const fetchNotes = async () => {
       try {
         const token = localStorage.getItem('token')
-        notesService.setToken(token)
-        const notes = await notesService.getAllByBook(bookId)
+        noteService.setToken(token)
+        const notes = await noteService.getAllByBook(bookId)
         setNotes(notes)
       } catch (error) {
         console.error('Error fetching notes:', error)
@@ -33,7 +33,7 @@ const NotesContainer = ({ bookId }: Props) => {
   const handleAddNote = useCallback(
     async (content: string) => {
       try {
-        const newNote = await notesService.create(bookId, content)
+        const newNote = await noteService.create(bookId, content)
 
         setNotes([newNote, ...notes])
         setIsModalOpen(false)

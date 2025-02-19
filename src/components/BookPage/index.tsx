@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import booksService from '../../services/books'
+import bookService from '../../services/books'
 import { Book } from '../../types'
 
 import Button from '../Button/Button'
@@ -28,7 +28,7 @@ const BookPage = ({ books, setBooks }: Props) => {
 
   const handleDelete = async () => {
     try {
-      await booksService.remove(book.id)
+      await bookService.remove(book.id)
       setBooks(books.filter((book) => book.id !== Number(id)))
       navigate('/me')
     } catch (error) {

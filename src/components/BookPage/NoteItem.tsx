@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-import notesService from '../../services/notes'
+import noteService from '../../services/notes'
 import { Id, Note } from '../../types'
 
 import Button from '../Button/Button'
@@ -26,7 +26,7 @@ const NoteItem = ({ note, onUpdate, onDelete }: Props) => {
     }
     try {
       setLoading(true)
-      const updatedNote = await notesService.update(note.id, {
+      const updatedNote = await noteService.update(note.id, {
         content: editedContent,
       })
       onUpdate(updatedNote)
@@ -40,7 +40,7 @@ const NoteItem = ({ note, onUpdate, onDelete }: Props) => {
 
   const handleDeleteConfirm = async () => {
     try {
-      await notesService.remove(note.id)
+      await noteService.remove(note.id)
       onDelete(note.id)
       setIsModalOpen(false)
     } catch (error) {

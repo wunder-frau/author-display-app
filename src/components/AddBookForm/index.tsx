@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import booksService from '../../services/books'
+import bookService from '../../services/books'
 import Button from '../Button/Button'
 
 import { AuthorInfo, Book, BookNew } from '../../types'
@@ -29,7 +29,7 @@ const AddBookForm = ({ onAdd }: Props) => {
     setLoading(true)
     setError(null)
     try {
-      const newBook = await booksService.create(formData)
+      const newBook = await bookService.create(formData)
       onAdd(newBook)
       setFormData({ title: '', firstname: '', lastname: '' })
     } catch (error) {

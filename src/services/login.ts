@@ -1,10 +1,9 @@
-/**
- * @see ./src/hooks/index.ts
- * @type {import("./src/hooks").useResource}
- */
-
 import { UserAuth, UserAuthResponse, UserNew } from '../types'
-import apiClient from './apiClient'
+import apiClient, { setAuthToken } from './apiClient'
+
+const setToken = (newToken: string | null) => {
+  setAuthToken(newToken)
+}
 
 const signUp = async (user: UserNew): Promise<UserAuthResponse> => {
   const { data } = await apiClient.post<UserAuthResponse>('/auth/signup', user)
@@ -16,4 +15,4 @@ const login = async (user: UserAuth): Promise<UserAuthResponse> => {
   return data
 }
 
-export default { signUp, login }
+export default { setToken, signUp, login }

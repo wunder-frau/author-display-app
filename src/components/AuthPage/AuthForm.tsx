@@ -5,7 +5,7 @@ import Button from '../Button/Button'
 import InputField from '../InputField/index'
 
 interface Props {
-  setIsAuthed: (_auth: boolean) => void
+  setIsAuthed: (_: boolean) => void
   isRegistered: boolean
   error: string | null
   setError: React.Dispatch<React.SetStateAction<string | null>>
@@ -48,6 +48,7 @@ const AuthForm = ({ setIsAuthed, isRegistered, error, setError }: Props) => {
         localStorage.setItem('token', response.accessToken)
         localStorage.setItem('id', String(response.user.id))
         setIsAuthed(true)
+        loginService.setToken(response.accessToken)
         navigate('/me')
       } else {
         throw new Error('Invalid response from server')
