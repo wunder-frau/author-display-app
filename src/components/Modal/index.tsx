@@ -1,7 +1,8 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import React, { useEffect } from 'react'
-import Button from '../Button/Button'
+
+import Button from '../Button'
 
 interface Props {
   isOpen: boolean

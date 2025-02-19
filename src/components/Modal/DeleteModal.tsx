@@ -1,5 +1,5 @@
-import Button from '../Button/Button'
-import Modal from './index'
+import Modal from '.'
+import Button from '../Button'
 
 interface Props {
   message: string

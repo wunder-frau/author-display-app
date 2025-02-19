@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { Id, Note } from '../../types'
+
 import AddButton from '../Button/AddButton'
 import NoteItem from './NoteItem'
 

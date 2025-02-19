@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Book } from '../../types'
 
-import MobileMenu from '../MobileMenu/index'
+import MobileMenu from '../MobileMenu'
 import AddBookModal from '../Modal/AddBookModal'
-import NavBar from '../NavBar/index'
+import NavBar from '../NavBar'
 
 interface Props {
   isAuthed: boolean

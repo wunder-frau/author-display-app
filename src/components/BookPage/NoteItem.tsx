@@ -4,7 +4,7 @@ import { useState } from 'react'
 import noteService from '../../services/notes'
 import { Id, Note } from '../../types'
 
-import Button from '../Button/Button'
+import Button from '../Button'
 import ConfirmModal from '../Modal/DeleteModal'
 
 interface Props {

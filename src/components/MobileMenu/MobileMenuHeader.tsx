@@ -1,6 +1,7 @@
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import Button from '../Button/Button'
-import Logo from '../Logo/ Logo'
+
+import Button from '../Button'
+import Logo from '../Logo'
 
 interface Props {
   onClose: () => void

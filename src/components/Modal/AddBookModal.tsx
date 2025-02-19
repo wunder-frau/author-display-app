@@ -1,6 +1,7 @@
 import { Book } from '../../types'
 import AddBookForm from '../AddBookForm'
-import Modal from './index'
+
+import Modal from '.'
 
 interface Props {
   isOpen: boolean

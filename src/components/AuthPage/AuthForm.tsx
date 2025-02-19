@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import loginService from '../../services/login'
-import Button from '../Button/Button'
-import InputField from '../InputField/index'
+
+import Button from '../Button'
+import InputField from '../InputField'
 
 interface Props {
   setIsAuthed: (_: boolean) => void

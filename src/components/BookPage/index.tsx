@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+
 import bookService from '../../services/books'
 import { Book } from '../../types'
 
-import Button from '../Button/Button'
+import Button from '../Button'
 import ConfirmModal from '../Modal/DeleteModal'
 import NotesContainer from './NotesContainer'
 
