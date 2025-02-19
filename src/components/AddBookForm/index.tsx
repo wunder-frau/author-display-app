@@ -1,22 +1,15 @@
 import React, { useState } from 'react'
-
 import booksService from '../../services/books'
 import Button from '../Button/Button'
 
-import { Book } from '../../types'
-
-interface Data {
-  title: string
-  firstname: string
-  lastname: string
-}
+import { AuthorInfo, Book, BookNew } from '../../types'
 
 interface Props {
   onAdd: (_: Book) => void
 }
 
 const AddBookForm: React.FC<Props> = ({ onAdd }: Props) => {
-  const [formData, setFormData] = useState<Data>({
+  const [formData, setFormData] = useState<BookNew & Partial<AuthorInfo>>({
     title: '',
     firstname: '',
     lastname: '',
