@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import MobileMenu from '../Header/MobileMenu'
 import Logo from '../Logo/ Logo'
+import MobileMenu from '../MobileMenu/index'
 import AuthButton from './AuthButton'
 import MobileMenuButton from './MobileMenuButton'
 import NavButton from './NavButton'
@@ -18,7 +18,7 @@ const NavBar: React.FC<Props> = ({
   handleLogout,
   setAddBookModalOpen,
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false) // ✅ Initialize state
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <nav
@@ -27,7 +27,6 @@ const NavBar: React.FC<Props> = ({
     >
       <Logo />
       <MobileMenuButton onClick={() => setMobileMenuOpen(true)} />
-
       <div className="hidden lg:flex lg:gap-x-12">
         {isAuthed && (
           <NavButton

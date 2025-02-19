@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Book } from '../../types'
 
+import MobileMenu from '../MobileMenu/index'
 import AddBookModal from '../Modal/AddBookModal'
 import NavBar from '../NavBar/index'
-import MobileMenu from './MobileMenu'
 
 interface Props {
   isAuthed: boolean
@@ -37,7 +37,6 @@ const Header = ({ isAuthed, setIsAuthed, books, setBooks }: Props) => {
           navItem={navItem}
           isAuthed={isAuthed}
           handleLogout={handleLogout}
-          setMobileMenuOpen={setMobileMenuOpen}
           setAddBookModalOpen={setAddBookModalOpen}
         />
         <MobileMenu

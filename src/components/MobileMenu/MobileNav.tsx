@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 
 interface Props {
@@ -22,18 +21,11 @@ const MobileNav = ({
             setAddBookModalOpen(true)
             onClose()
           }}
-          className="-mx-3 block w-full rounded-lg bg-emerald-300 px-3 py-2.5 text-left text-base font-semibold text-gray-900 hover:bg-gray-50"
+          className="rounded-lgpx-3 -mx-3 block w-full py-2.5 text-left text-base font-semibold text-gray-900 hover:bg-gray-50"
         >
           {navItem.name}
         </Button>
       )}
-
-      <Link
-        to={navItem.href}
-        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 transition-shadow duration-300 hover:bg-gray-50 hover:shadow-lg"
-      >
-        {navItem.name}
-      </Link>
     </div>
   )
 }
