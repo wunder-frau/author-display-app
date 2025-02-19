@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useField } from '../../hooks'
 
 import loginService from '../../services/login'
+import Button from '../Button/Button'
 
 interface Props {
-  // isAuthed: boolean
   setIsAuthed: (_auth: boolean) => void
 }
 
-//FIXME: Add name field to sign up
 const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
   const [isRegistered, setIsRegistered] = useState(true)
   const [emailField, resetEmail] = useField('email', 'email')
@@ -64,7 +63,6 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
           {isRegistered ? 'Sign in to your account' : 'Create your account'}
         </h2>
       </div>
-
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleAuth} className="space-y-6">
           {!isRegistered && (
@@ -101,7 +99,6 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
               />
             </div>
           </div>
-
           <div>
             <div className="flex items-center justify-between">
               <label
@@ -110,16 +107,6 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
               >
                 Password
               </label>
-              {isRegistered && (
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-              )}
             </div>
             <div className="mt-2">
               <input
@@ -132,23 +119,20 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
               />
             </div>
           </div>
-
           {error && <p className="text-center text-sm text-red-500">{error}</p>}
-
           <div>
-            <button
+            <Button
               type="submit"
               disabled={loading}
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:opacity-50"
             >
               {loading ? 'Processing...' : isRegistered ? 'Sign in' : 'Sign up'}
-            </button>
+            </Button>
           </div>
         </form>
-
         <p className="mt-6 text-center text-sm text-gray-500">
           {isRegistered ? "Don't have an account?" : 'Already have an account?'}{' '}
-          <button
+          <Button
             onClick={() => {
               setIsRegistered(!isRegistered)
               resetEmail()
@@ -158,7 +142,7 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
             className="font-semibold text-indigo-600 hover:text-indigo-500"
           >
             {isRegistered ? 'Sign up' : 'Sign in'}
-          </button>
+          </Button>
         </p>
       </div>
     </div>
