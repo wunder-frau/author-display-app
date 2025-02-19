@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useField } from '../../hooks'
-
 import loginService from '../../services/login'
 import Button from '../Button/Button'
 
@@ -11,43 +9,53 @@ interface Props {
 
 const AuthPage = ({ setIsAuthed }: Props) => {
   const [isRegistered, setIsRegistered] = useState(true)
-  const [emailField, resetEmail] = useField('email', 'email')
-  const [passwordField, resetPassword] = useField('password', 'password')
-  const [nameField, resetName] = useField('text', 'name')
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    name: '',
+  })
+
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const resetForm = () => {
+    setFormData({ email: '', password: '', name: '' })
+  }
+
   const handleAuth = async (event: React.FormEvent<HTMLFormElement>) => {
-    void event.preventDefault()
-    void setLoading(true)
-    void setError(null)
+    event.preventDefault()
+    setLoading(true)
+    setError(null)
 
     try {
       const response = isRegistered
         ? await loginService.login({
-            email: emailField.value,
-            password: passwordField.value,
+            email: formData.email,
+            password: formData.password,
           })
         : await loginService.signUp({
-            email: emailField.value,
-            password: passwordField.value,
-            name: nameField.value,
+            email: formData.email,
+            password: formData.password,
+            name: formData.name,
           })
 
       if (response?.accessToken && response?.user?.id) {
         localStorage.setItem('token', response.accessToken)
         localStorage.setItem('id', String(response.user.id))
-
         setIsAuthed(true)
         navigate('/me')
       } else {
         throw new Error('Invalid response from server')
       }
 
-      resetEmail()
-      resetPassword()
-      resetName()
+      resetForm()
     } catch (error) {
       setError('Authentication failed. Please try again.')
       console.error('Auth error:', error)
@@ -75,14 +83,16 @@ const AuthPage = ({ setIsAuthed }: Props) => {
               </label>
               <div className="mt-2">
                 <input
-                  {...nameField}
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required={!isRegistered}
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
                 />
               </div>
             </div>
           )}
-
           <div>
             <label
               htmlFor="email"
@@ -92,7 +102,10 @@ const AuthPage = ({ setIsAuthed }: Props) => {
             </label>
             <div className="mt-2">
               <input
-                {...emailField}
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 required
                 autoComplete="email"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
@@ -100,17 +113,18 @@ const AuthPage = ({ setIsAuthed }: Props) => {
             </div>
           </div>
           <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-900"
-              >
-                Password
-              </label>
-            </div>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-900"
+            >
+              Password
+            </label>
             <div className="mt-2">
               <input
-                {...passwordField}
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
                 required
                 autoComplete={
                   isRegistered ? 'current-password' : 'new-password'
@@ -135,8 +149,7 @@ const AuthPage = ({ setIsAuthed }: Props) => {
           <Button
             onClick={() => {
               setIsRegistered(!isRegistered)
-              resetEmail()
-              resetPassword()
+              resetForm()
               setError(null)
             }}
             className="font-semibold text-indigo-600 hover:text-indigo-500"
