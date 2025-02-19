@@ -1,5 +1,6 @@
 import React from 'react'
 import { Id, Note } from '../../types'
+import AddButton from '../Button/AddButton'
 import NoteItem from './NoteItem'
 
 interface Props {
@@ -24,12 +25,13 @@ const NoteList: React.FC<Props> = ({ notes, setNotes, onAdd }) => {
   return (
     <div className="mt-5 bg-white p-5">
       <div className="flex flex-wrap justify-center gap-4">
-        <div
+        <AddButton onClick={onAdd} />
+        {/* <div
           onClick={onAdd}
           className="flex w-58 cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-4"
         >
           <span className="text-3xl text-gray-400">+</span>
-        </div>
+        </div> */}
         {notes.map((note: Note) => (
           <NoteItem
             key={String(note.id)}
