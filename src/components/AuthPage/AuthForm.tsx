@@ -49,6 +49,7 @@ const AuthForm = ({ setIsAuthed, isRegistered, error, setError }: Props) => {
       if (response?.accessToken && response?.user?.id) {
         localStorage.setItem('token', response.accessToken)
         localStorage.setItem('id', String(response.user.id))
+        localStorage.setItem('username', response.user.name)
         setIsAuthed(true)
         loginService.setToken(response.accessToken)
         navigate('/me')

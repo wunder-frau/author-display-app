@@ -14,12 +14,13 @@ interface Props {
 const BookListPage = ({ books, setBooks }: Props) => {
   const [addBookModalOpen, setAddBookModalOpen] = React.useState(false)
 
+  const name = localStorage.getItem('username')
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Book List
+            {name ? name : 'Book List'}
           </h2>
           <p className="mt-2 text-lg text-gray-600">
             Reflect on your favorite books effortlessly.
@@ -44,7 +45,7 @@ const BookListPage = ({ books, setBooks }: Props) => {
         onClose={() => setAddBookModalOpen(false)}
         onAdd={(newBook: Book) => {
           setAddBookModalOpen(false)
-          setBooks([...books, newBook])
+          setBooks([newBook, ...books])
         }}
       />
     </div>

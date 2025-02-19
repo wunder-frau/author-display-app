@@ -22,6 +22,7 @@ const Header = ({ isAuthed, setIsAuthed, books, setBooks }: Props) => {
   const handleLogout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('id')
+    localStorage.removeItem('username')
     setIsAuthed(false)
     navigate('/start')
   }
@@ -50,7 +51,7 @@ const Header = ({ isAuthed, setIsAuthed, books, setBooks }: Props) => {
         <AddBookModal
           isOpen={addBookModalOpen}
           onClose={() => setAddBookModalOpen(false)}
-          onAdd={(newBook) => setBooks([...books, newBook])}
+          onAdd={(newBook) => setBooks([newBook, ...books])}
         />
       </header>
     </div>
