@@ -19,21 +19,22 @@ const InputField = ({
   required,
   autoComplete,
 }: Props) => (
-  <div>
-    <label htmlFor={name} className="block text-sm font-medium text-gray-900">
+  <div className="text-left">
+    <label
+      htmlFor={name}
+      className="mb-1 block text-sm font-medium text-gray-900"
+    >
       {label}
     </label>
-    <div className="mt-2">
-      <input
-        type={type}
-        name={name}
-        value={value}
-        onChange={onChange}
-        required={required}
-        autoComplete={autoComplete}
-        className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm"
-      />
-    </div>
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      required={required}
+      autoComplete={autoComplete}
+      className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+    />
   </div>
 )
 

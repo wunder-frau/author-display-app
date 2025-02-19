@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import bookService from '../../services/books'
 import Button from '../Button/Button'
+import InputField from '../InputField'
 
 import { AuthorInfo, Book, BookNew } from '../../types'
 
@@ -43,56 +44,49 @@ const AddBookForm = ({ onAdd }: Props) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto mb-8 w-full max-w-sm rounded-lg bg-white p-6 text-center"
+      className="mx-auto w-full max-w-md rounded-xl bg-white p-6"
     >
-      <h2 className="mb-4 text-xl font-bold">Add New Book</h2>
-      {error && <p className="mb-2 text-red-500">{error}</p>}
-      <div className="mb-4 text-left">
-        <label className="mb-1 block" htmlFor="title">
-          Title
-        </label>
-        <input
+      <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">
+        Add New Book
+      </h2>
+
+      {error && (
+        <p className="mb-4 rounded bg-red-100 px-4 py-2 text-red-600">
+          {error}
+        </p>
+      )}
+
+      <div className="space-y-4">
+        <InputField
+          label="Title"
           type="text"
           name="title"
-          id="title"
           value={formData.title}
           onChange={handleChange}
-          className="w-full rounded border p-2"
           required
         />
-      </div>
-      <div className="mb-4 text-left">
-        <label className="mb-1 block" htmlFor="firstname">
-          Author First Name
-        </label>
-        <input
+        <InputField
+          label="Author First Name"
           type="text"
           name="firstname"
-          id="firstname"
-          value={formData.firstname}
+          value={formData.firstname || ''}
           onChange={handleChange}
-          className="w-full rounded border p-2"
           required
         />
-      </div>
-      <div className="mb-4 text-left">
-        <label className="mb-1 block" htmlFor="lastname">
-          Author Last Name
-        </label>
-        <input
+        <InputField
+          label="Author Last Name"
           type="text"
           name="lastname"
-          id="lastname"
-          value={formData.lastname}
+          value={formData.lastname || ''}
           onChange={handleChange}
-          className="w-full rounded border p-2"
           required
         />
       </div>
+
       <Button
         type="submit"
         disabled={loading}
-        className="bg-green-500 text-white hover:bg-green-600"
+        className="mt-6 w-full rounded-md bg-green-500 py-2 text-lg font-semibold text-white transition-all hover:bg-green-700 disabled:opacity-50"
       >
         {loading ? 'Adding...' : 'Add Book'}
       </Button>

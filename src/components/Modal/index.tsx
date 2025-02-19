@@ -32,13 +32,13 @@ const Modal = ({
 
   return (
     <motion.div
-      className="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-gray-500/60 p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-gray-500/60 p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <motion.div
-        className="w-full max-w-sm rounded-lg bg-white p-6 text-center shadow-lg"
+        className="relative z-50 w-full max-w-sm rounded-lg bg-white p-6 text-center shadow-lg"
         initial={{ scale: 0.8 }}
         animate={{ scale: 1 }}
         exit={{ scale: 0.8 }}
