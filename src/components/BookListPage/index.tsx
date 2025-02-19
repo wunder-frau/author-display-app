@@ -3,7 +3,7 @@ import React from 'react'
 import { Book } from '../../types'
 
 import AddButton from '../Button/AddButton'
-import AddBookModal from '../ConfirmModal/AddBookModal'
+import AddBookModal from '../Modal/AddBookModal'
 import Item from './Item'
 
 interface Props {

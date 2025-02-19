@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { Book } from '../../types'
 
-import AddBookModal from '../ConfirmModal/AddBookModal'
+import AddBookModal from '../Modal/AddBookModal'
 
 interface Props {
   isAuthed: boolean

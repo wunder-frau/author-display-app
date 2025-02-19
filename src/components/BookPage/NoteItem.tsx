@@ -5,7 +5,7 @@ import notesService from '../../services/notes'
 import { Id, Note } from '../../types'
 
 import Button from '../Button/Button'
-import ConfirmModal from '../ConfirmModal'
+import ConfirmModal from '../Modal/DeleteModal'
 
 interface Props {
   note: Note

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import booksService from '../../services/books'
+import Button from '../Button/Button'
 
 import { Book } from '../../types'
 
@@ -95,13 +96,13 @@ const AddBookForm: React.FC<Props> = ({ onAdd }: Props) => {
           required
         />
       </div>
-      <button
+      <Button
         type="submit"
         disabled={loading}
-        className="rounded bg-green-500 px-4 py-2 text-white transition-colors hover:bg-green-600"
+        className="bg-green-500 text-white hover:bg-green-600"
       >
         {loading ? 'Adding...' : 'Add Book'}
-      </button>
+      </Button>
     </form>
   )
 }

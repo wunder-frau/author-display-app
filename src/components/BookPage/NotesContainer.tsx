@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import notesService from '../../services/notes'
 import { Id, Note } from '../../types'
-import NewNoteModal from '../ConfirmModal/NewNoteModal'
+import NewNoteModal from '../Modal/NewNoteModal'
 import NoteList from './NoteList'
 
 interface Props {

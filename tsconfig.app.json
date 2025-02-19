@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     // "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/components/ConfirmModal/index/.tsx"]
+  "include": ["src", "src/components/Modal/index/.tsx"]
 }

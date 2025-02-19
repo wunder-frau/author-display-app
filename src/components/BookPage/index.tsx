@@ -4,7 +4,7 @@ import booksService from '../../services/books'
 import { Book } from '../../types'
 
 import Button from '../Button/Button'
-import ConfirmModal from '../ConfirmModal'
+import ConfirmModal from '../Modal/DeleteModal'
 import NotesContainer from './NotesContainer'
 
 interface Props {
