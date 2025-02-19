@@ -24,8 +24,9 @@ export interface Book {
   title: string
   author?: AuthorInfo
   id: Id
+  user_id: Id // <- owner
 }
-export type BookNew = Omit<Book, 'id'>
+export type BookNew = Omit<Book, 'id' | 'user_id'>
 //: }}}
 
 //: User {{{

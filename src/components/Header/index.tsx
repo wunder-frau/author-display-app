@@ -27,6 +27,7 @@ const Header: React.FC<Props> = ({
 
   const handleLogout = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
     setIsAuthed(false)
     navigate('/start')
   }

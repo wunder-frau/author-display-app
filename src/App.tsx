@@ -23,7 +23,7 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    if (token && typeof token === 'string') {
+    if (token) {
       setIsAuthed(true)
       bookService.setToken(token)
     } else {

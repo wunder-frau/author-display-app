@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-
 import booksService from '../../services/books'
 import { Book } from '../../types'
 
@@ -48,12 +47,14 @@ const BookPage: React.FC<Props> = ({ books, setBooks }: Props) => {
             by {book.author.firstname} {book.author.lastname}
           </p>
         )}
-        <Button
-          onClick={() => setConfirmOpen(true)}
-          className="mt-4 bg-fuchsia-200 text-white hover:bg-red-600"
-        >
-          Delete Book
-        </Button>
+        {book.user_id === Number(localStorage.getItem('id')) && (
+          <Button
+            onClick={() => setConfirmOpen(true)}
+            className="mt-4 bg-fuchsia-200 text-white hover:bg-red-600"
+          >
+            Delete Book
+          </Button>
+        )}
       </div>
       <NotesContainer bookId={Number(id)} />
       <ConfirmModal

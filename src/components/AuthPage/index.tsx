@@ -35,8 +35,11 @@ const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
             password: passwordField.value,
             name: nameField.value,
           })
-      if (response?.accessToken) {
+
+      if (response?.accessToken && response?.user?.id) {
         localStorage.setItem('token', response.accessToken)
+        localStorage.setItem('id', String(response.user.id))
+
         setIsAuthed(true)
         navigate('/me')
       } else {
