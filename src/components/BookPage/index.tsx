@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import booksService from '../../services/books'
 import { Book } from '../../types'
 
+import Button from '../Button/Button'
 import ConfirmModal from '../ConfirmModal'
 import NotesContainer from './NotesContainer'
 
@@ -47,15 +48,14 @@ const BookPage: React.FC<Props> = ({ books, setBooks }: Props) => {
             by {book.author.firstname} {book.author.lastname}
           </p>
         )}
-        <button
+        <Button
           onClick={() => setConfirmOpen(true)}
-          className="mt-4 rounded bg-fuchsia-200 px-4 py-2 text-white transition-colors hover:bg-red-600"
+          className="mt-4 bg-fuchsia-200 text-white hover:bg-red-600"
         >
           Delete Book
-        </button>
+        </Button>
       </div>
       <NotesContainer bookId={Number(id)} />
-
       <ConfirmModal
         message="Are you sure you want to delete this book?"
         isOpen={confirmOpen}

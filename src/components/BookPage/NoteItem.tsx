@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import notesService from '../../services/notes'
 import { Id, Note } from '../../types'
 
+import Button from '../Button/Button'
 import ConfirmModal from '../ConfirmModal'
 
 interface Props {
@@ -63,41 +64,40 @@ const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
             onChange={(e) => setEditedContent(e.target.value)}
           />
           <div className="mt-2 flex justify-center gap-2">
-            <button
-              className="rounded bg-sky-600 px-3 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
+            <Button
               onClick={handleEdit}
+              className="bg-sky-600 text-white"
               disabled={loading}
             >
               {loading ? 'Saving...' : 'Save'}
-            </button>
-            <button
-              className="rounded bg-sky-600 px-3 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
+            </Button>
+            <Button
               onClick={() => setIsEditing(false)}
+              className="bg-gray-400 text-white"
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </div>
       ) : (
         <div className="w-full">
           <p className="text-center text-sm text-gray-800">{note.content}</p>
           <div className="mt-2 flex justify-center gap-2">
-            <button
-              className="rounded bg-sky-600 px-2 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
+            <Button
               onClick={() => setIsEditing(true)}
+              className="rounded bg-sky-600 px-2 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
             >
               Edit
-            </button>
-            <button
-              className="rounded bg-sky-600 px-2 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
+            </Button>
+            <Button
               onClick={() => setIsModalOpen(true)}
+              className="px- rounded bg-sky-600 py-1 text-sm text-white shadow-md transition-shadow hover:shadow-lg"
             >
               Delete
-            </button>
+            </Button>
           </div>
         </div>
       )}
-
       <ConfirmModal
         message="Are you sure you want to delete this note?"
         isOpen={isModalOpen}
