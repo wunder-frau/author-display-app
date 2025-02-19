@@ -31,10 +31,7 @@ const BookListPage = ({ books, setBooks }: Props) => {
             <AddButton onClick={() => setAddBookModalOpen(true)} />
           </div>
           {books.length > 0 ? (
-            books
-              .slice()
-              .reverse()
-              .map((book) => <Item key={String(book.id)} book={book} />)
+            books.map((book) => <Item key={String(book.id)} book={book} />)
           ) : (
             <p className="text-gray-600">No books available.</p>
           )}
