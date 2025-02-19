@@ -1,3 +1,6 @@
+import axios from 'axios'
+
+import { apiBaseUrl } from '../constants'
 import { UserAuth, UserAuthResponse, UserNew } from '../types'
 import apiClient, { setAuthToken } from './apiClient'
 
@@ -6,7 +9,10 @@ const setToken = (newToken: string | null) => {
 }
 
 const signUp = async (user: UserNew): Promise<UserAuthResponse> => {
-  const { data } = await apiClient.post<UserAuthResponse>('/auth/signup', user)
+  const { data } = await axios.post<UserAuthResponse>(
+    `${apiBaseUrl}/auth/signup`,
+    user,
+  )
   return data
 }
 
