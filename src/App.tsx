@@ -76,7 +76,7 @@ const App = () => {
           path="/me"
           element={
             isAuthed ? (
-              <BookListPage books={books} />
+              <BookListPage books={books} setBooks={setBooks} />
             ) : (
               <Navigate to="/start" replace />
             )
