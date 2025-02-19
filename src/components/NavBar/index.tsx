@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import MobileMenu from '../Header/MobileMenu'
-import Logo from './ Logo'
+import Logo from '../Logo/ Logo'
 import AuthButton from './AuthButton'
 import MobileMenuButton from './MobileMenuButton'
 import NavButton from './NavButton'
