@@ -11,13 +11,13 @@ interface Props {
   showCloseButton?: boolean
 }
 
-const Modal: React.FC<Props> = ({
+const Modal = ({
   isOpen,
   onClose,
   title,
   children,
   showCloseButton = true,
-}) => {
+}: Props) => {
   if (!isOpen) return null
 
   return (

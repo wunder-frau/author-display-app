@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 
@@ -7,7 +6,7 @@ interface Props {
   setAddBookModalOpen: (_: boolean) => void
 }
 
-const NavButton: React.FC<Props> = ({ navItem, setAddBookModalOpen }) => {
+const NavButton = ({ navItem, setAddBookModalOpen }: Props) => {
   return navItem.name === 'Add Book' ? (
     <Button
       onClick={() => setAddBookModalOpen(true)}

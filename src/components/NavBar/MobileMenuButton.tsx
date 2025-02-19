@@ -1,12 +1,11 @@
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import React from 'react'
 import Button from '../Button/Button'
 
 interface Props {
   onClick: () => void
 }
 
-const MobileMenuButton: React.FC<Props> = ({ onClick }) => (
+const MobileMenuButton = ({ onClick }: Props) => (
   <div className="flex lg:hidden">
     <Button
       onClick={onClick}

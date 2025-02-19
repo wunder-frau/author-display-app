@@ -1,4 +1,3 @@
-import React from 'react'
 import Button from '../Button/Button'
 import Modal from './index'
 
@@ -9,12 +8,7 @@ interface Props {
   onCancel: () => void
 }
 
-const ConfirmModal: React.FC<Props> = ({
-  message,
-  isOpen,
-  onConfirm,
-  onCancel,
-}) => {
+const ConfirmModal = ({ message, isOpen, onConfirm, onCancel }: Props) => {
   return (
     <Modal isOpen={isOpen} onClose={onCancel} showCloseButton={false}>
       <p className="text-lg font-semibold">{message}</p>

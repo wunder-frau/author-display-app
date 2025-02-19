@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import booksService from '../../services/books'
 import { Book } from '../../types'
@@ -12,7 +12,7 @@ interface Props {
   setBooks: (_: Book[]) => void
 }
 
-const BookPage: React.FC<Props> = ({ books, setBooks }: Props) => {
+const BookPage = ({ books, setBooks }: Props) => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const [confirmOpen, setConfirmOpen] = useState(false)

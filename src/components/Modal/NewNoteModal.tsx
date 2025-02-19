@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Button from '../Button/Button'
 import Modal from './index'
 
@@ -8,7 +8,7 @@ interface Props {
   onSubmit: (_: string) => void
 }
 
-const NewNoteModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
+const NewNoteModal = ({ isOpen, onClose, onSubmit }: Props) => {
   const [noteContent, setNoteContent] = useState('')
 
   return (

@@ -9,7 +9,7 @@ interface Props {
   setIsAuthed: (_auth: boolean) => void
 }
 
-const AuthPage: React.FC<Props> = ({ setIsAuthed }: Props) => {
+const AuthPage = ({ setIsAuthed }: Props) => {
   const [isRegistered, setIsRegistered] = useState(true)
   const [emailField, resetEmail] = useField('email', 'email')
   const [passwordField, resetPassword] = useField('password', 'password')

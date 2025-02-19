@@ -11,7 +11,7 @@ interface Props {
   setBooks: (_: Book[]) => void
 }
 
-const BookListPage: React.FC<Props> = ({ books, setBooks }) => {
+const BookListPage = ({ books, setBooks }: Props) => {
   const [addBookModalOpen, setAddBookModalOpen] = React.useState(false)
 
   return (

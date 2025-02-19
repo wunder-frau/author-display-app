@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Book } from '../../types'
 
@@ -13,12 +13,7 @@ interface Props {
   setBooks: (_: Book[]) => void
 }
 
-const Header: React.FC<Props> = ({
-  isAuthed,
-  setIsAuthed,
-  books,
-  setBooks,
-}) => {
+const Header = ({ isAuthed, setIsAuthed, books, setBooks }: Props) => {
   const navigate = useNavigate()
   const location = useLocation()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

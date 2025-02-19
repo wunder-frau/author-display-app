@@ -8,7 +8,7 @@ interface Props {
   onAdd: (_: Book) => void
 }
 
-const AddBookForm: React.FC<Props> = ({ onAdd }: Props) => {
+const AddBookForm = ({ onAdd }: Props) => {
   const [formData, setFormData] = useState<BookNew & Partial<AuthorInfo>>({
     title: '',
     firstname: '',

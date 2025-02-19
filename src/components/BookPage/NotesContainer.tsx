@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import notesService from '../../services/notes'
 import { Id, Note } from '../../types'
 import NewNoteModal from '../Modal/NewNoteModal'
@@ -8,7 +8,7 @@ interface Props {
   bookId: Id
 }
 
-const NotesContainer: React.FC<Props> = ({ bookId }) => {
+const NotesContainer = ({ bookId }: Props) => {
   const [notes, setNotes] = useState<Note[]>([])
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)

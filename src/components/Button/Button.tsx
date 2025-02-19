@@ -8,13 +8,13 @@ interface Props {
   type?: 'button' | 'submit' | 'reset'
 }
 
-const Button: React.FC<Props> = ({
+const Button = ({
   onClick,
   children,
   className,
   disabled = false,
   type = 'button',
-}) => {
+}: Props) => {
   return (
     <button
       type={type}

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { Book } from '../../types'
@@ -7,7 +6,7 @@ interface Props {
   book: Book
 }
 
-const Item: React.FC<Props> = ({ book }: Props) => {
+const Item = ({ book }: Props) => {
   return (
     <Link to={`/book/${book.id}`} className="cursor-pointer">
       <article className="flex max-w-xl flex-col items-start justify-between rounded-lg p-6 transition-shadow duration-300 hover:shadow-lg">

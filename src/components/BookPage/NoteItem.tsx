@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import notesService from '../../services/notes'
 import { Id, Note } from '../../types'
@@ -13,7 +13,7 @@ interface Props {
   onDelete: (_: Id) => void
 }
 
-const NoteItem: React.FC<Props> = ({ note, onUpdate, onDelete }: Props) => {
+const NoteItem = ({ note, onUpdate, onDelete }: Props) => {
   const [isEditing, setIsEditing] = useState(false)
   const [editedContent, setEditedContent] = useState(note.content)
   const [loading, setLoading] = useState(false)

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 
@@ -7,7 +6,7 @@ interface Props {
   handleLogout: () => void
 }
 
-const AuthButton: React.FC<Props> = ({ isAuthed, handleLogout }) => (
+const AuthButton = ({ isAuthed, handleLogout }: Props) => (
   <div className="hidden lg:flex lg:flex-1 lg:justify-end">
     {isAuthed ? (
       <Button

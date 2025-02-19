@@ -9,7 +9,7 @@ interface Props {
   onAdd: React.MouseEventHandler<HTMLDivElement>
 }
 
-const NoteList: React.FC<Props> = ({ notes, setNotes, onAdd }) => {
+const NoteList = ({ notes, setNotes, onAdd }: Props) => {
   const handleNoteUpdate = (updatedObj: Note) => {
     setNotes(
       notes.map((note: Note) =>

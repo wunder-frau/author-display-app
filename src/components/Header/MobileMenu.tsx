@@ -1,6 +1,5 @@
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import React from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button/Button'
 
@@ -13,14 +12,14 @@ interface Props {
   setAddBookModalOpen: (_: boolean) => void
 }
 
-const MobileMenu: React.FC<Props> = ({
+const MobileMenu = ({
   isOpen,
   onClose,
   navItem,
   isAuthed,
   handleLogout,
   setAddBookModalOpen,
-}) => {
+}: Props) => {
   return (
     <Dialog open={isOpen} onClose={onClose} className="lg:hidden">
       <div className="fixed inset-0 z-50" />
@@ -36,28 +35,23 @@ const MobileMenu: React.FC<Props> = ({
             <XMarkIcon aria-hidden="true" className="h-6 w-6" />
           </Button>
         </div>
+
         <div className="mt-6 flow-root">
           <div className="-my-6 divide-y divide-gray-500/10">
             <div className="space-y-2 py-6">
-              {navItem.name === 'Add Book' ? (
+              {isAuthed && navItem.name === 'Add Book' && (
                 <Button
                   onClick={() => {
                     setAddBookModalOpen(true)
                     onClose()
                   }}
-                  className="-mx-3 block w-full rounded-lg px-3 py-2.5 text-left text-base font-semibold text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block w-full rounded-lg bg-emerald-300 px-3 py-2.5 text-left text-base font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   {navItem.name}
                 </Button>
-              ) : (
-                <Link
-                  to={navItem.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 transition-shadow duration-300 hover:bg-gray-50 hover:shadow-lg"
-                >
-                  {navItem.name}
-                </Link>
               )}
             </div>
+
             <div className="py-6">
               {isAuthed ? (
                 <Button

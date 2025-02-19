@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import MobileMenu from '../Header/MobileMenu'
 import Logo from './ Logo'
 import AuthButton from './AuthButton'
 import MobileMenuButton from './MobileMenuButton'
@@ -9,7 +9,6 @@ interface Props {
   navItem: { name: string; href: string }
   isAuthed: boolean
   handleLogout: () => void
-  setMobileMenuOpen: (_: boolean) => void
   setAddBookModalOpen: (_: boolean) => void
 }
 
@@ -17,9 +16,10 @@ const NavBar: React.FC<Props> = ({
   navItem,
   isAuthed,
   handleLogout,
-  setMobileMenuOpen,
   setAddBookModalOpen,
 }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false) // ✅ Initialize state
+
   return (
     <nav
       aria-label="Global"
@@ -27,13 +27,24 @@ const NavBar: React.FC<Props> = ({
     >
       <Logo />
       <MobileMenuButton onClick={() => setMobileMenuOpen(true)} />
+
       <div className="hidden lg:flex lg:gap-x-12">
-        <NavButton
-          navItem={navItem}
-          setAddBookModalOpen={setAddBookModalOpen}
-        />
+        {isAuthed && (
+          <NavButton
+            navItem={navItem}
+            setAddBookModalOpen={setAddBookModalOpen}
+          />
+        )}
       </div>
       <AuthButton isAuthed={isAuthed} handleLogout={handleLogout} />
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        navItem={navItem}
+        isAuthed={isAuthed}
+        handleLogout={handleLogout}
+        setAddBookModalOpen={setAddBookModalOpen}
+      />
     </nav>
   )
 }

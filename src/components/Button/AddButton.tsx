@@ -4,7 +4,7 @@ interface Props {
   onClick: React.MouseEventHandler<HTMLDivElement>
 }
 
-const AddNoteButton: React.FC<Props> = ({ onClick }) => {
+const AddNoteButton = ({ onClick }: Props) => {
   return (
     <div
       onClick={onClick}

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Book } from '../../types'
 import AddBookForm from '../AddBookForm'
 import Modal from './index'
@@ -9,7 +8,7 @@ interface Props {
   onAdd: (_: Book) => void
 }
 
-const AddBookModal: React.FC<Props> = ({ isOpen, onClose, onAdd }) => {
+const AddBookModal = ({ isOpen, onClose, onAdd }: Props) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <AddBookForm
