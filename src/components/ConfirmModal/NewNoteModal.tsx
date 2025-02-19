@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
+import Button from '../Button/Button'
 
 interface Props {
   isOpen: boolean
@@ -14,7 +15,7 @@ const NewNoteModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <motion.div
-      className="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-amber-200"
+      className="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-gray-500/60 p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -34,7 +35,7 @@ const NewNoteModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
           placeholder="Type your note here..."
         />
         <div className="mt-4 flex justify-center gap-4">
-          <button
+          {/* <button
             className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
             onClick={() => {
               if (noteContent.trim()) {
@@ -50,7 +51,24 @@ const NewNoteModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
             onClick={onClose}
           >
             Cancel
-          </button>
+          </button> */}
+          <Button
+            onClick={() => {
+              if (noteContent.trim()) {
+                onSubmit(noteContent)
+                setNoteContent('')
+              }
+            }}
+            className="bg-blue-500 text-white hover:bg-blue-600"
+          >
+            Add Note
+          </Button>
+          <Button
+            onClick={onClose}
+            className="bg-gray-300 text-black hover:bg-gray-400"
+          >
+            Cancel
+          </Button>
         </div>
       </motion.div>
     </motion.div>

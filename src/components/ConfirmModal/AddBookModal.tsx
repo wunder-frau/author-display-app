@@ -5,6 +5,7 @@ import React from 'react'
 import { Book } from '../../types'
 
 import AddBookForm from '../AddBookForm'
+import Button from '../Button/Button'
 
 interface Props {
   isOpen: boolean
@@ -22,12 +23,12 @@ const AddBookModal: React.FC<Props> = ({ isOpen, onClose, onAdd }) => {
       <div className="flex min-h-screen items-center justify-center">
         <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left">
           <div className="mb-4 flex items-center justify-between">
-            <button
+            <Button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600"
+              className="rounded-full p-1 text-gray-400 hover:text-gray-600"
             >
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-            </button>
+            </Button>
           </div>
           <AddBookForm
             onAdd={(newBook) => {

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import React from 'react'
+import Button from '../Button/Button'
 
 interface Props {
   message: string
@@ -18,7 +19,7 @@ const ConfirmModal: React.FC<Props> = ({
 
   return (
     <motion.div
-      className="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-amber-200"
+      className="bg-opacity-50 fixed inset-0 flex items-center justify-center bg-gray-500/60 p-4"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -31,18 +32,18 @@ const ConfirmModal: React.FC<Props> = ({
       >
         <p className="text-lg font-semibold">{message}</p>
         <div className="mt-4 flex justify-center gap-4">
-          <button
-            className="rounded bg-red-400 px-4 py-2 text-white hover:bg-red-600"
+          <Button
             onClick={onConfirm}
+            className="bg-red-400 text-white hover:bg-red-600"
           >
             Yes, Delete
-          </button>
-          <button
-            className="rounded bg-gray-300 px-4 py-2 text-black hover:bg-gray-400"
+          </Button>
+          <Button
             onClick={onCancel}
+            className="bg-gray-300 text-black hover:bg-gray-400"
           >
             Cancel
-          </button>
+          </Button>
         </div>
       </motion.div>
     </motion.div>
