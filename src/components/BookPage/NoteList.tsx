@@ -28,14 +28,17 @@ const NoteList = ({ notes, setNotes, onAdd }: Props) => {
     <div className="mt-5 bg-white p-5">
       <div className="flex flex-wrap justify-center gap-4">
         <AddButton onClick={onAdd} />
-        {notes.map((note: Note) => (
-          <NoteItem
-            key={String(note.id)}
-            note={note}
-            onUpdate={handleNoteUpdate}
-            onDelete={handleNoteDelete}
-          />
-        ))}
+        {notes
+          .slice()
+          .reverse()
+          .map((note: Note) => (
+            <NoteItem
+              key={String(note.id)}
+              note={note}
+              onUpdate={handleNoteUpdate}
+              onDelete={handleNoteDelete}
+            />
+          ))}
       </div>
     </div>
   )

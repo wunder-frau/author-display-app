@@ -37,7 +37,7 @@ const NotesContainer = ({ bookId }: Props) => {
       try {
         const newNote = await noteService.create(bookId, content)
 
-        setNotes([newNote, ...notes])
+        setNotes([...notes, newNote])
         setIsModalOpen(false)
       } catch (error) {
         console.error('Error creating note:', error)
