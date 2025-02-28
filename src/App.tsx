@@ -13,6 +13,7 @@ import { Book } from './types'
 import AuthPage from './components/AuthPage'
 import BookListPage from './components/BookListPage'
 import BookPage from './components/BookPage'
+import ChatBot from './components/ChatBot/indexChat'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import StartPage from './components/StartPage'
@@ -87,6 +88,7 @@ const App = () => {
           element={!isAuthed ? <StartPage /> : <Navigate to="/me" replace />}
         />
       </Routes>
+      <ChatBot />
       <Footer />
     </Router>
   )
