@@ -88,7 +88,7 @@ const App = () => {
           element={!isAuthed ? <StartPage /> : <Navigate to="/me" replace />}
         />
       </Routes>
-      <ChatBot />
+      <ChatBot isFooter={true} />
       <Footer />
     </Router>
   )

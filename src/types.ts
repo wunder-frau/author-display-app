@@ -45,3 +45,10 @@ export interface UserAuthResponse {
   user: UserPublic
 }
 //: }}}
+
+//: Message {{{
+export type Message = {
+  content: string
+  role: 'user' | 'assistant' | 'system'
+}
+//: }}}
