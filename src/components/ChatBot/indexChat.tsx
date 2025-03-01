@@ -5,16 +5,16 @@ import BotMessage from './BotMessage'
 import ChatInput from './ChatInput'
 import UserMessage from './UserMessage'
 
-interface ChatBotProps {
+interface Props {
   isFooter?: boolean
 }
 
-const ChatBot = ({ isFooter = false }: ChatBotProps) => {
+const ChatBot = ({ isFooter = false }: Props) => {
   const [showChat, setShowChat] = useState(false)
 
   //console.log('isFooter:', isFooter)
 
-  const iconBottomClass = isFooter ? 'bottom-[5rem]' : '!bottom-0'
+  const iconBottomClass = isFooter ? 'bottom-[7rem]' : '!bottom-0'
   const chatWindowBottomClass = isFooter
     ? 'bottom-[calc(4rem+1rem+4rem)]'
     : 'bottom-[calc(4rem+1rem)]'
